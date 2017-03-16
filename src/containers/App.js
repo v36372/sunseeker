@@ -1,44 +1,30 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import ListMatch from '../components/ListMatch'
-
-const DOTASTATS_API = `https://dotabetstats.herokuapp.com`
+import { fetchMatches } from '../actions'
 
 class App extends Component {
-    constructor(config) {
-        super(config)
-        this.state = {
-            listmatch: [
-            ]
-        }
-    }
 
     componentDidMount () {
-        console.log('App mounted')
-        this.fetchListMatch()
-    }
-
-    fetchListMatch = () => {
-        fetch(DOTASTATS_API + "/match?limit=100&status=open")
-            .then( res => {
-                if (res.ok) {
-                    res.json().then((data) => {
-                        this.setState({
-                            listmatch: data
-                        })
-                    })
-                }
-            })
+        this.props.dispatch(fetchMatches());
     }
 
     render() {
-        const {listmatch} = this.state;
+        const { listMatches } = this.props;
         return (
             <div>
-                <ListMatch listmatch={listmatch} />
+                <ListMatch listMatches={ listMatches } />
             </div>
         );
     }
 }
 
-export default App
+const mapStateToProps = state => {
+    return {
+        listMatches: state.matches.listMatches || [],
+        isFetching: state.matches.isFetching,
+    }
+};
+
+export default connect(mapStateToProps)(App)
 
