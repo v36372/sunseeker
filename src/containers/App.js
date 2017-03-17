@@ -21,8 +21,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        listMatches: state.matches.listMatches || [],
-        isFetching: state.matches.isFetching,
+        listMatches: state.matches.listMatches
     }
 };
 

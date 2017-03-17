@@ -1,43 +1,23 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchTeam } from '../actions'
 import {Card, CardHeader, CardTitle, CardText} from 'material-ui/Card'
-import Moment from 'moment'
+import Moment from 'react-moment'
 import {List, ListItem} from 'material-ui/List'
 import Avatar from 'material-ui/Avatar'
 import {lightGreenA700, red700,grey600, grey50, transparent} from 'material-ui/styles/colors'
 import Divider from 'material-ui/Divider'
 import DatePicker from 'material-ui/DatePicker'
 
-const DOTASTATS_API = `https://dotabetstats.herokuapp.com`
-
 class TeamDetail extends Component {
-    constructor(config) {
-        console.log('detail constructor')
-        super(config)
-        this.state = {
-            teamDetail:{}
-        }
+
+    componentDidMount () {
+        this.props.dispatch(fetchTeam(this.props.params.name));
     }
 
-    componentDidMount(){
-        console.log('detail mounted')
-        this.fetchTeamDetail()
-    }
-
-    fetchTeamDetail = () => {
-        fetch(DOTASTATS_API + "/f10k/" + this.props.params.name)
-            .then( res => {
-                if (res.ok) {
-                    res.json().then((data) => {
-                        this.setState({
-                            teamDetail: data
-                        })
-                    })
-                }
-            })
-    }
-
-    render() {
-        const { teamDetail } = this.state
+    render () {
+        const { teamDetail } = this.props;
+        console.log(teamDetail);
 
         return (
             <div style={{'display': 'inline-block', width: '100%'}}>
@@ -104,4 +84,10 @@ class TeamDetail extends Component {
     }
 }
 
-export default TeamDetail
+const mapStateToProps = state => {
+    return {
+        teamDetail: state.team.teamDetail
+    }
+};
+
+export default connect(mapStateToProps)(TeamDetail)

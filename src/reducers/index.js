@@ -1,33 +1,11 @@
-import { routerReducer as routing } from 'react-router-redux'
 import { combineReducers } from 'redux'
-import {
-    REQUEST_MATCHES, RECEIVE_MATCHES
-} from '../actions'
-
-const matches = (state = {
-    isFetching: false,
-    listMatches: []
-}, action) => {
-    switch (action.type) {
-        case REQUEST_MATCHES:
-            return {
-                ...state,
-                isFetching: true,
-            };
-        case RECEIVE_MATCHES:
-            return {
-                ...state,
-                isFetching: false,
-                listMatches: action.listMatches,
-                lastUpdated: action.receivedAt
-            };
-        default:
-            return state
-    }
-}
+import { routerReducer as routing } from 'react-router-redux'
+import matches from './matches'
+import team from './team'
 
 const rootReducer = combineReducers({
     matches,
+    team,
     routing
 });
 
