@@ -1,0 +1,57 @@
+.TableRow {
+  height: 120px;
+  margin-bottom: 10px; }
+
+.TableRow-background {
+  position: absolute;
+  top: 0;
+  right: 0; }
+
+.TableRow-background img {
+  height: 120px;
+  width: 100%; }
+
+.TableRow-body-name {
+  display: inline-block;
+  vertical-align: middle; }
+
+.TableRow-body-image {
+  display: inline-block; }
+
+.TableRow-body-image img {
+  height: 55px;
+  width: 91px; }
+
+.GroupMatch {
+  margin-bottom: 30px; }
+
+.u-position--relative {
+  position: relative !important; }
+
+.u-position--fixed {
+  position: fixed !important; }
+
+html,
+body,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0; }
+
+button,
+select,
+textarea,
+input {
+  font: inherit;
+  color: currentColor; }
+
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
