@@ -1,0 +1,27 @@
+.TableRow {
+  height: 120px;
+  margin-bottom: 10px;
+}
+
+.TableRow-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  img {
+    height: 120px;
+    width: 100%;
+  }
+}
+
+.TableRow-body-name {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.TableRow-body-image {
+  display: inline-block;
+  img {
+    height: 55px;
+    width: 91px;
+  }
+}

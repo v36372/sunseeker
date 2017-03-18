@@ -16,7 +16,7 @@ export const receiveMatches = (json) => ({
 
 export const fetchMatches = () => dispatch => {
     dispatch(requestMatches());
-    return fetch(STATS_API + '/matches?limit=100&status=open')
+    return fetch(STATS_API + '/matches?limit=10')
         .then(response => response.json())
         .then(json => dispatch(receiveMatches(json)))
 };
