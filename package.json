@@ -27,7 +27,7 @@
     "redux-logger": "^2.8.2"
   },
   "scripts": {
-    "build-css": "node-sass src/ -o src/",
+    "build-css": "node-sass public/ -o public/",
     "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
