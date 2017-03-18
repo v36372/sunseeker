@@ -6,10 +6,9 @@
   position: absolute;
   top: 0;
   right: 0; }
-
-.TableRow-background img {
-  height: 120px;
-  width: 100%; }
+  .TableRow-background img {
+    height: 120px;
+    width: 100%; }
 
 .TableRow-body-name {
   display: inline-block;
@@ -17,10 +16,9 @@
 
 .TableRow-body-image {
   display: inline-block; }
-
-.TableRow-body-image img {
-  height: 55px;
-  width: 91px; }
+  .TableRow-body-image img {
+    height: 55px;
+    width: 91px; }
 
 .GroupMatch {
   margin-bottom: 30px; }
