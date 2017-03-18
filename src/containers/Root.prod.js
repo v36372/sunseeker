@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react'
 import { Provider } from 'react-redux'
 import routes from '../routes'
 import { Router } from 'react-router'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 const Root = ({ store, history }) => (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
