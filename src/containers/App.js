@@ -11,7 +11,6 @@ class App extends Component {
 
     render() {
         const { listMatches } = this.props;
-        console.log(listMatches);
         return (
             <div className="container">
                 <ListMatch listMatches={ listMatches } />

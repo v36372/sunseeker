@@ -17,7 +17,6 @@ class TeamDetail extends Component {
 
     render () {
         const { teamDetail } = this.props;
-        console.log(teamDetail);
 
         return (
             <div style={{'display': 'inline-block', width: '100%'}}>
