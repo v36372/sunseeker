@@ -29,7 +29,7 @@
   "scripts": {
     "build-css": "node-sass public/assets/css/style.scss -o public/assets/css/",
     "watch-css": "npm run build-css && node-sass --watch --recursive public/assets/css/ -o public/assets/css/",
-    "start": "REACT_APP_ENV=production npm run build-css && react-scripts build && react-scripts start",
+    "start": "REACT_APP_ENV=production npm run build-css && react-scripts start",
     "start-dev": "npm-run-all -p watch-css start-js",
     "start-js": "react-scripts start",
     "build": "npm run build-css && react-scripts build",
