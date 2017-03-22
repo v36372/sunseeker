@@ -9,7 +9,6 @@ import { fetchMatch } from '../actions'
 class MatchDetail extends Component {
 
     componentDidMount () {
-        console.log("MatchDetail mounted");
         this.props.dispatch(fetchMatch(this.props.params.id));
     }
 
