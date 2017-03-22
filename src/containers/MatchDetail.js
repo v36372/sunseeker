@@ -1,28 +1,39 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Moment from 'react-moment'
 import {Link} from 'react-router';
 import {Card} from 'material-ui/Card';
+import NavigationBar from '../components/NavigationBar'
+import { fetchMatch } from '../actions'
 
-class TableRow extends Component {
+class MatchDetail extends Component {
+
+    componentDidMount () {
+        console.log("MatchDetail mounted");
+        this.props.dispatch(fetchMatch(this.props.params.id));
+    }
+
     render () {
         const { match } = this.props;
+
         return (
+            <div>
+                <NavigationBar />
+            <div className="container">
             <Card className="TableRow row u-position--relative">
                 <div className="TableRow-head row">
                     <div className="col-md-8">
-                        <Link to={`/match/${match.id}`}>
-                            {match.tournament} - {match.mode_name}
-                        </Link>
+                        {match.tournament} - {match.mode_name}
                     </div>
                     <div className="col-md-4 text-right">
                         {
                             match.status === "Live"
                                 ?
-                                    <span>Live</span>
+                                <span>Live</span>
                                 :
-                                    <div className="TableRow-time">
-                                        <Moment fromNow>{match.time}</Moment>
-                                    </div>
+                                <div className="TableRow-time">
+                                    <Moment fromNow>{match.time}</Moment>
+                                </div>
                         }
                     </div>
                 </div>
@@ -47,9 +58,9 @@ class TableRow extends Component {
                             {
                                 match.status === "Settled"
                                     ?
-                                        <div className="TableRow-body-score">
-                                            <span>{match.scorea} </span><span> {match.scoreb}</span>
-                                        </div>
+                                    <div className="TableRow-body-score">
+                                        <span>{match.scorea} </span><span> {match.scoreb}</span>
+                                    </div>
                                     : ""
                             }
                             {match.bestof}
@@ -73,12 +84,12 @@ class TableRow extends Component {
                     {
                         match.status === "Settled"
                             ? 	<div>
-                                <div className="row">
-                                    <div className="TableRow-body-result">
-                                        <div className="col-md-10 text-center">{match.winner} won</div>
-                                    </div>
+                            <div className="row">
+                                <div className="TableRow-body-result">
+                                    <div className="col-md-10 text-center">{match.winner} won</div>
                                 </div>
                             </div>
+                        </div>
                             :	''
                     }
                 </div>
@@ -86,8 +97,16 @@ class TableRow extends Component {
                     <img src={match.tournament_logo} alt={match.tournament} />
                 </div>
             </Card>
+            </div>
+            </div>
         )
     }
 }
 
-export default TableRow
+const mapStateToProps = state => {
+    return {
+        match: state.match.matchDetail
+    }
+};
+
+export default connect(mapStateToProps)(MatchDetail)
