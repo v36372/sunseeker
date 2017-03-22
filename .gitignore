@@ -12,6 +12,7 @@ yarn.lock
 
 # CSS preprocessor
 src/**/*.css
+public/**/*.css
 
 # misc
 .DS_Store
