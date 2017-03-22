@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "node-sass": "^4.5.0",
     "history": "^4.6.0",
     "material-ui": "^0.17.1",
     "moment": "^2.17.1",
@@ -19,7 +20,6 @@
     "react-scripts": "0.9.5"
   },
   "devDependencies": {
-    "node-sass": "^4.5.0",
     "npm-run-all": "^4.0.2",
     "redux-devtools": "^3.3.2",
     "redux-devtools-dock-monitor": "^1.1.1",
