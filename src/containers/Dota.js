@@ -4,12 +4,12 @@ import NavigationBar from '../components/NavigationBar'
 import ListMatch from '../components/ListMatch'
 import { fetchMatches } from '../actions'
 
-class App extends Component {
+class Dota extends Component {
 
     componentDidMount () {
         this.props.dispatch(fetchMatches({
-            limit: 10,
-            game: 'all'
+            limit: 20,
+            game: 'dota'
         }));
     }
 
@@ -32,5 +32,5 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(Dota)
 

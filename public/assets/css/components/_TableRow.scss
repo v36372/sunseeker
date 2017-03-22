@@ -1,14 +1,24 @@
 .TableRow {
   height: 120px;
   margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.TableRow-head {
+  padding: 0 15px;
+  background: $light-gray;
+}
+
+.TableRow-body {
+  padding-top: 15px;
 }
 
 .TableRow-background {
   position: absolute;
-  top: 0;
+  top: 20px;
   right: 0;
   img {
-    height: 120px;
+    height: 100px;
     width: 100%;
   }
 }
