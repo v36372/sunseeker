@@ -8,7 +8,7 @@ class Dota extends Component {
 
     componentDidMount () {
         this.props.dispatch(fetchMatches({
-            limit: 10,
+            limit: 20,
             game: 'dota'
         }));
     }
