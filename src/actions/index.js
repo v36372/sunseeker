@@ -4,8 +4,9 @@ const STATS_API = 'https://dotabetstats.herokuapp.com';
 export const REQUEST_MATCHES = 'REQUEST_MATCHES';
 export const RECEIVE_MATCHES = 'RECEIVE_MATCHES';
 
-export const requestMatches = () => ({
-    type: REQUEST_MATCHES
+export const requestMatches = (params) => ({
+    type: REQUEST_MATCHES,
+    params: params
 })
 
 export const receiveMatches = (json) => ({
@@ -14,9 +15,9 @@ export const receiveMatches = (json) => ({
     receivedAt: Date.now()
 });
 
-export const fetchMatches = () => dispatch => {
-    dispatch(requestMatches());
-    return fetch(STATS_API + '/matches?limit=10')
+export const fetchMatches = params => dispatch => {
+    dispatch(requestMatches(params));
+    return fetch(`${STATS_API}/matches?limit=${params.limit}&game=${params.game}`)
         .then(response => response.json())
         .then(json => dispatch(receiveMatches(json)))
 };

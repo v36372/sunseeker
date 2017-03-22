@@ -23,9 +23,9 @@ class NavigationBar extends Component {
                 </div>
                 <input className='NavigationBar-checkbox' id='NavigationBar-checkbox' type='checkbox'/>
                 <ul className="NavigationBar-menu">
-                    <li className="menu-item"><Link to="/dota">DOTA</Link></li>
-                    <li className="menu-item"><Link to="/csgo">CSGO</Link></li>
-                    <li className="menu-item"><Link to="/sports">SPORTS</Link></li>
+                    <li className="menu-item"><Link to="/dota" activeClassName="menuItem--active">DOTA</Link></li>
+                    <li className="menu-item"><Link to="/csgo" activeClassName="menuItem--active">CSGO</Link></li>
+                    <li className="menu-item"><Link to="/sports" activeClassName="menuItem--active">SPORTS</Link></li>
                 </ul>
             </div>
         )

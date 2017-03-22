@@ -20,6 +20,7 @@
   text-decoration: none;
   color: $dark-gray;
   img {
+    padding: 10px;
     max-height: 60px;
     @media (min-width: 768px) {
       max-height: 116px;
@@ -117,6 +118,11 @@
         text-decoration: none;
       }
     }
+  }
+
+  .menuItem--active {
+      border-bottom-color: $white !important;
+      text-decoration: none;
   }
 
   .NavigationBar-label {
