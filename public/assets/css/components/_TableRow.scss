@@ -1,5 +1,4 @@
 .TableRow {
-  height: 120px;
   margin-bottom: 10px;
   overflow: hidden;
 }
@@ -14,13 +13,7 @@
 }
 
 .TableRow-background {
-  position: absolute;
-  top: 20px;
-  right: 0;
-  img {
-    height: 100px;
-    width: 100%;
-  }
+  display: none;
 }
 
 .TableRow-body-name {
@@ -33,5 +26,24 @@
   img {
     height: 55px;
     width: 91px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .TableRow {
+    height: 120px;
+  }
+}
+
+@media screen and (min-width: 1121px) {
+  .TableRow-background {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    img {
+      height: 100px;
+      width: 100%;
+    }
   }
 }
