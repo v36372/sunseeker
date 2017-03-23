@@ -2,4 +2,4 @@ Dotastats client plus
 
 npm install / yarn install
 
-npm start / yarn start
+npm start-dev / yarn start-dev
