@@ -4,6 +4,7 @@ import {
 
 const matches = (state = {
     isFetching: false,
+    requestParams: '',
     listMatches: []
 }, action) => {
     switch (action.type) {
@@ -11,6 +12,7 @@ const matches = (state = {
             return {
                 ...state,
                 isFetching: true,
+                requestParams: action.params
             };
         case RECEIVE_MATCHES:
             return {
