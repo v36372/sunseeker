@@ -21,7 +21,7 @@ class TableRow extends Component {
                                     <span>Live</span>
                                 :
                                     <div className="TableRow-time">
-                                        <Moment fromNow>{match.time}</Moment>
+                                        <span>{match.status} </span><Moment fromNow>{match.time}</Moment>
                                     </div>
                         }
                     </div>
