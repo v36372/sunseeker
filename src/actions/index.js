@@ -1,5 +1,14 @@
 const STATS_API = 'https://dotabetstats.herokuapp.com';
 
+let serialize = function(obj) {
+    let str = [];
+    for(let p in obj)
+        if (obj.hasOwnProperty(p)) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        }
+    return str.join("&");
+};
+
 // Actions for matches
 export const REQUEST_MATCHES = 'REQUEST_MATCHES';
 export const RECEIVE_MATCHES = 'RECEIVE_MATCHES';
@@ -16,8 +25,9 @@ export const receiveMatches = (json) => ({
 });
 
 export const fetchMatches = params => dispatch => {
+    let endPoint = `${STATS_API}/matches?${serialize(params)}`;
     dispatch(requestMatches(params));
-    return fetch(`${STATS_API}/matches?limit=${params.limit}&game=${params.game}`)
+    return fetch(endPoint)
         .then(response => response.json())
         .then(json => dispatch(receiveMatches(json)))
 };
