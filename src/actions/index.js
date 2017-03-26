@@ -91,7 +91,7 @@ export const receiveHistory = (json) => ({
 });
 
 export const fetchHistory = id => dispatch => {
-    dispatch(requestTeam(id));
+    dispatch(requestHistory(id));
     return fetch(`${STATS_API}/team/${id}`)
         .then(response => response.json())
         .then(json => dispatch(receiveHistory(json)))
