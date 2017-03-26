@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchTeam } from '../actions'
+import { fetchHistory } from '../actions'
 import {Card, CardHeader, CardTitle, CardText} from 'material-ui/Card'
 import {grey600, grey50} from 'material-ui/styles/colors'
 import DatePicker from 'material-ui/DatePicker'
 import F10KHistory from '../components/F10KHistory'
-import TeamTwitter from '../components/TeamTwitter'
+import ResultList from '../components/ResultList'
 import NavigationBar from '../components/NavigationBar'
 
 class TeamDetail extends Component {
@@ -14,11 +15,17 @@ class TeamDetail extends Component {
         this.props.dispatch(fetchTeam(this.props.params.name));
     }
 
+    getRecent = () => {
+    	this.props.dispatch(fetchHistory(this.props.params.name))
+	};
+
     render () {
         const { teamDetail } = this.props;
+        const { teamHistory } = this.props;
+        const teamName = this.props.params.name.toLowerCase();
 
         return (
-			<div>
+			<div className="TeamDetail">
 				<NavigationBar/>
             	<div className="container">
                 <div className="row">
@@ -42,13 +49,11 @@ class TeamDetail extends Component {
                                         	</ul>
 										</CardText>
                                 	</Card>
-									<F10KHistory f10kHistory={teamDetail.f10kHistory}/>
+									<F10KHistory teamName={teamName} f10kHistory={teamDetail.matches} />
+									<ResultList teamName={teamName} resultList={teamHistory} getRecent={this.getRecent} />
                             	</CardText>
                         	</div>
                     	</Card>
-					</div>
-					<div className="col-sm-6">
-						<TeamTwitter team={teamDetail.twitter}/>
 					</div>
                 </div>
             	</div>
@@ -59,7 +64,8 @@ class TeamDetail extends Component {
 
 const mapStateToProps = state => {
     return {
-        teamDetail: state.team.teamDetail
+        teamDetail: state.team.teamDetail,
+		teamHistory: state.team.teamHistory
     }
 };
 

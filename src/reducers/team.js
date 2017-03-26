@@ -13,18 +13,16 @@ const team = (state = {
                 ...state,
                 isFetching: true,
             };
+        case REQUEST_HISTORY:
+            return {
+                ...state,
+                isFetching: false,
+            };
         case RECEIVE_TEAM:
             return {
                 ...state,
                 isFetching: false,
                 teamDetail: action.teamDetail,
-                lastUpdated: action.receivedAt
-            };
-        case REQUEST_HISTORY:
-            return {
-                ...state,
-                isFetching: false,
-                teamHistory: action.teamHistory,
                 lastUpdated: action.receivedAt
             };
         case RECEIVE_HISTORY:

@@ -8,8 +8,19 @@ import Moment from 'react-moment'
 
 class F10KHistory extends Component {
 
+	matchScore = (teamName, match) => {
+        if(match.teama.toLowerCase() === teamName && match.scorea && match.scoreb)
+            return `${match.scorea} - ${match.scoreb}`;
+        else if (match.teamb.toLowerCase() === teamName && match.scorea && match.scoreb)
+            return `${match.scoreb} - ${match.scorea}`;
+        else {
+             return 'No Information';
+        }
+	};
+
 	render () {
-		const { f10kHistory } = this.props 
+		const { f10kHistory } = this.props;
+		const { teamName } = this.props;
 
 		return (
 			<Card style={{ 'marginTop': '10px'}}>
@@ -23,24 +34,24 @@ class F10KHistory extends Component {
 								<ListItem
 									primaryText={match.name}
 									leftAvatar={
-										<Avatar color={ match.winner.toLowerCase() !== match.name.toLowerCase() ? lightGreenA700:red700}
+										<Avatar color={ match.winner.toLowerCase() !== teamName ? lightGreenA700:red700}
 										backgroundColor={transparent}
 										style={{left: 8}}>
-												{match.winner.toLowerCase() !== match.name.toLowerCase()? "W":"L"}
+												{match.winner.toLowerCase() !== teamName? "W":"L"}
 										</Avatar>
 									}
 									rightAvatar={
 										<p>
-											{match.kill + " - " + match.death}
+											{this.matchScore(teamName, match)}
 										</p>
 									}
 									secondaryText={
-										<p>
-											<Moment fromNow ago>
+										<div>
+											<Moment fromNow>
 												{match.time}
-											</Moment> 
-											ago
-										</p>}
+											</Moment>
+										</div>
+									}
 								/>
 
 								<Divider inset={true} />
