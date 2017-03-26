@@ -6,6 +6,11 @@ import Divider from 'material-ui/Divider'
 import {List, ListItem} from 'material-ui/List'
 import Moment from 'react-moment'
 
+const groupStyle = {
+    marginBottom: 12,
+    borderBottom: 'solid 1px black'
+};
+
 class ResultList extends Component {
 
     matchScore = (teamName, match) => {
@@ -14,7 +19,7 @@ class ResultList extends Component {
         else if (match.teamb.toLowerCase() === teamName && match.scorea && match.scoreb)
             return `${match.scoreb} - ${match.scorea}`;
         else {
-            return 'No Information';
+            return 'No Info';
         }
     };
 
@@ -31,11 +36,11 @@ class ResultList extends Component {
                         {
                             resultList ?
                                 resultList.map(groupMatch =>
-                                    <div className="groupMatch">
+                                    <div className="groupMatch" key={groupMatch.series_id} style={groupStyle}>
                                         {
                                             groupMatch ?
                                                 groupMatch.matches.map(match =>
-                                                    <div key={resultList.indexOf(match)} >
+                                                    <div key={match.id} >
                                                         <ListItem
                                                             primaryText={match.matchname}
                                                             leftAvatar={
@@ -47,7 +52,7 @@ class ResultList extends Component {
                                                                             {match.winner.toLowerCase() !== teamName? "W":"L"}
                                                                         </Avatar>
                                                                     :
-                                                                        ''
+                                                                        <Avatar/>
                                                             }
                                                             rightAvatar={
                                                                 <p>
