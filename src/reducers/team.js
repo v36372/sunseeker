@@ -1,5 +1,6 @@
 import {
-    REQUEST_TEAM, RECEIVE_TEAM
+    REQUEST_TEAM, RECEIVE_TEAM,
+    REQUEST_HISTORY, RECEIVE_HISTORY
 } from '../actions'
 
 const team = (state = {
@@ -17,6 +18,20 @@ const team = (state = {
                 ...state,
                 isFetching: false,
                 teamDetail: action.teamDetail,
+                lastUpdated: action.receivedAt
+            };
+        case REQUEST_HISTORY:
+            return {
+                ...state,
+                isFetching: false,
+                teamHistory: action.teamHistory,
+                lastUpdated: action.receivedAt
+            };
+        case RECEIVE_HISTORY:
+            return {
+                ...state,
+                isFetching: false,
+                teamHistory: action.teamHistory,
                 lastUpdated: action.receivedAt
             };
         default:
