@@ -2,12 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchTeam } from '../actions'
 import {Card, CardHeader, CardTitle, CardText} from 'material-ui/Card'
-import Moment from 'react-moment'
-import {List, ListItem} from 'material-ui/List'
-import Avatar from 'material-ui/Avatar'
-import {lightGreenA700, red700,grey600, grey50, transparent} from 'material-ui/styles/colors'
-import Divider from 'material-ui/Divider'
+import {grey600, grey50} from 'material-ui/styles/colors'
 import DatePicker from 'material-ui/DatePicker'
+import F10KHistory from '../components/F10KHistory'
 
 class TeamDetail extends Component {
 
@@ -39,41 +36,7 @@ class TeamDetail extends Component {
                                             <li>Average odds: {teamDetail.avgodds}</li>
                                         </ul></CardText>
                                 </Card>
-                                <Card style={{ 'marginTop': '10px'}}>
-                                    <CardHeader title="F10K history" actAsExpander style={{ backgroundColor: grey600 }} titleColor={grey50} showExpandableButton={true}/>
-                                    <CardText expandable={true}>
-                                        <List>
-                                            {
-                                                teamDetail.f10kHistory
-                                                    ? teamDetail.f10kHistory.map(match =>
-                                                        <div key={teamDetail.f10kHistory.indexOf(match)} >
-                                                            <ListItem
-                                                                primaryText={match.name}
-                                                                leftAvatar={
-                                                                    <Avatar
-                                                                        color={ match.winner.toLowerCase() !== match.name.toLowerCase()? lightGreenA700:red700} backgroundColor={transparent}
-                                                                        style={{left: 8}}
-                                                                    >
-                                                                        {match.winner.toLowerCase() !== match.name.toLowerCase()? "W":"L"}
-                                                                    </Avatar>
-                                                                }
-                                                                rightAvatar={
-                                                                    <p>
-                                                                        {match.kill + " - " + match.death}
-                                                                    </p>
-                                                                }
-                                                                secondaryText={<p>
-                                                                    <Moment fromNow ago>{match.time}</Moment> ago</p>}
-                                                            />
-
-                                                            <Divider inset={true} />
-                                                        </div>
-                                                    )
-                                                    : ''
-                                            }
-                                        </List>
-                                    </CardText>
-                                </Card>
+								<F10KHistory f10kHistory={teamDetail.f10kHistory}/>
                             </CardText>
                         </div>
                     </Card>
