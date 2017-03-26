@@ -61,7 +61,7 @@ export const RECEIVE_TEAM = 'RECEIVE_TEAM';
 export const requestTeam = (id) => ({
     type: REQUEST_TEAM,
     teamId: id
-})
+});
 
 export const receiveTeam = (json) => ({
     type: RECEIVE_TEAM,
@@ -71,7 +71,28 @@ export const receiveTeam = (json) => ({
 
 export const fetchTeam = id => dispatch => {
     dispatch(requestTeam(id));
-    return fetch(STATS_API + "/f10k/" + id)
+    return fetch(`${STATS_API}/team/${id}/f10k`)
         .then(response => response.json())
         .then(json => dispatch(receiveTeam(json)))
+};
+
+export const REQUEST_HISTORY = 'REQUEST_HISTORY';
+export const RECEIVE_HISTORY = 'RECEIVE_HISTORY';
+
+export const requestHistory = (id) => ({
+    type: REQUEST_HISTORY,
+    teamId: id
+});
+
+export const receiveHistory = (json) => ({
+    type: RECEIVE_HISTORY,
+    teamHistory: json,
+    receivedAt: Date.now()
+});
+
+export const fetchHistory = id => dispatch => {
+    dispatch(requestTeam(id));
+    return fetch(`${STATS_API}/team/${id}`)
+        .then(response => response.json())
+        .then(json => dispatch(receiveHistory(json)))
 };
