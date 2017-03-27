@@ -32,12 +32,12 @@ class F10KHistory extends Component {
 					f10kHistory.map(match =>
 							<div key={f10kHistory.indexOf(match)} >
 								<ListItem
-									primaryText={match.name}
+									primaryText={match.matchname}
 									leftAvatar={
-										<Avatar color={ match.winner.toLowerCase() !== teamName ? lightGreenA700:red700}
+										<Avatar color={ match.winner.toLowerCase() === teamName ? lightGreenA700:red700}
 										backgroundColor={transparent}
 										style={{left: 8}}>
-												{match.winner.toLowerCase() !== teamName? "W":"L"}
+												{match.winner.toLowerCase() === teamName? "W":"L"}
 										</Avatar>
 									}
 									rightAvatar={

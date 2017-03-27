@@ -26,7 +26,6 @@ class ResultList extends Component {
     render () {
         const { resultList } = this.props || [];
         const { teamName } = this.props;
-        console.log(resultList);
 
         return (
             <Card style={{ 'marginTop': '10px'}}>
@@ -46,10 +45,10 @@ class ResultList extends Component {
                                                             leftAvatar={
                                                                 match.winner
                                                                     ?
-                                                                        <Avatar color={ match.winner.toLowerCase() !== teamName ? lightGreenA700:red700}
+                                                                        <Avatar color={ match.winner.toLowerCase() === teamName ? lightGreenA700:red700}
                                                                                 backgroundColor={transparent}
                                                                                 style={{left: 8}}>
-                                                                            {match.winner.toLowerCase() !== teamName? "W":"L"}
+                                                                            {match.winner.toLowerCase() === teamName? "W":"L"}
                                                                         </Avatar>
                                                                     :
                                                                         <Avatar/>
