@@ -40,7 +40,7 @@ class MatchesFilter extends Component {
                         value="live"
                         onClick={this.applyFilter}
                     >
-                        Upcoming
+                        Live
                     </button>
                     <button
                         type="button"
