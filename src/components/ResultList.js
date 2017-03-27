@@ -13,11 +13,9 @@ const groupStyle = {
 
 class ResultList extends Component {
 
-    matchScore = (teamName, match) => {
-        if(match.teama.toLowerCase() === teamName && match.scorea && match.scoreb)
+    matchScore = (match) => {
+        if(match.scorea && match.scoreb)
             return `${match.scorea} - ${match.scoreb}`;
-        else if (match.teamb.toLowerCase() === teamName && match.scorea && match.scoreb)
-            return `${match.scoreb} - ${match.scorea}`;
         else {
             return 'No Info';
         }
@@ -55,7 +53,7 @@ class ResultList extends Component {
                                                             }
                                                             rightAvatar={
                                                                 <p>
-                                                                    {this.matchScore(teamName, match)}
+                                                                    {this.matchScore(match)}
                                                                 </p>
                                                             }
                                                             secondaryText={

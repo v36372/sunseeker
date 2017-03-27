@@ -8,13 +8,11 @@ import Moment from 'react-moment'
 
 class F10KHistory extends Component {
 
-	matchScore = (teamName, match) => {
-        if(match.teama.toLowerCase() === teamName && match.scorea && match.scoreb)
+	matchScore = (match) => {
+        if(match.scorea && match.scoreb)
             return `${match.scorea} - ${match.scoreb}`;
-        else if (match.teamb.toLowerCase() === teamName && match.scorea && match.scoreb)
-            return `${match.scoreb} - ${match.scorea}`;
         else {
-             return 'No Information';
+             return 'No Info';
         }
 	};
 
@@ -42,7 +40,7 @@ class F10KHistory extends Component {
 									}
 									rightAvatar={
 										<p>
-											{this.matchScore(teamName, match)}
+											{this.matchScore(match)}
 										</p>
 									}
 									secondaryText={
