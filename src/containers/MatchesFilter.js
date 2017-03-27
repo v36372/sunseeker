@@ -36,6 +36,14 @@ class MatchesFilter extends Component {
                     </button>
                     <button
                         type="button"
+                        className={(this.props.status === 'live') ? 'btn btn-primary' : 'btn btn-default'}
+                        value="live"
+                        onClick={this.applyFilter}
+                    >
+                        Upcoming
+                    </button>
+                    <button
+                        type="button"
                         className={(this.props.status === 'closed') ? 'btn btn-primary' : 'btn btn-default'}
                         value="closed"
                         onClick={this.applyFilter}
