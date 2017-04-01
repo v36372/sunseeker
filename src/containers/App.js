@@ -10,8 +10,10 @@ class App extends Component {
 
     componentDidMount () {
         this.props.dispatch(fetchMatches({
+            limit: 30,
             time_from: dayBefore(),
-            game: 'all'
+            game: 'all',
+            status: 'all'
         }));
     }
 

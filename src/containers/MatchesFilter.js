@@ -10,7 +10,8 @@ const style = {
 class MatchesFilter extends Component {
 
     applyFilter = ev => this.props.dispatch(fetchMatches({
-        date_from: dayBefore(),
+        limit: 50,
+        time_from: dayBefore(),
         game: this.props.game,
         status: ev.target.value
     }));

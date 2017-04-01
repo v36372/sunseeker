@@ -10,6 +10,7 @@ class Dota extends Component {
 
     componentDidMount () {
         this.props.dispatch(fetchMatches({
+            limit: 50,
             time_from: dayBefore(),
             game: 'dota'
         }));
