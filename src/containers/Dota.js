@@ -12,7 +12,8 @@ class Dota extends Component {
         this.props.dispatch(fetchMatches({
             limit: 50,
             time_from: dayBefore(),
-            game: 'dota'
+            game: 'dota',
+            status: 'all'
         }));
     }
 

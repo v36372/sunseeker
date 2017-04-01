@@ -12,7 +12,8 @@ class Csgo extends Component {
         this.props.dispatch(fetchMatches({
             limit: 50,
             time_from: dayBefore(),
-            game: 'csgo'
+            game: 'csgo',
+            status: all
         }));
     }
 
