@@ -4,12 +4,13 @@ import MatchesFilter from './MatchesFilter'
 import NavigationBar from '../components/NavigationBar'
 import ListMatch from '../components/ListMatch'
 import { fetchMatches } from '../actions'
+import dayBefore from '../helper/date'
 
 class Csgo extends Component {
 
     componentDidMount () {
         this.props.dispatch(fetchMatches({
-            limit: 20,
+            time_from: dayBefore(),
             game: 'csgo'
         }));
     }

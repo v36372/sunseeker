@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import MatchesFilter from './MatchesFilter'
 import NavigationBar from '../components/NavigationBar'
 import ListMatch from '../components/ListMatch'
 import { fetchMatches } from '../actions'
+import dayBefore from '../helper/date'
 
 class App extends Component {
 
     componentDidMount () {
         this.props.dispatch(fetchMatches({
-            limit: 10,
+            time_from: dayBefore(),
             game: 'all'
         }));
     }
@@ -19,6 +21,9 @@ class App extends Component {
             <div>
                 <NavigationBar />
                 <div className="container">
+                    <div className="row">
+                        <MatchesFilter />
+                    </div>
                     <ListMatch listMatches={ listMatches } />
                 </div>
             </div>

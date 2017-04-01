@@ -9,7 +9,6 @@ const style = {
 class MatchesFilter extends Component {
 
     applyFilter = ev => this.props.dispatch(fetchMatches({
-        limit: 20,
         game: this.props.game,
         status: ev.target.value
     }));
