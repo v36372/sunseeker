@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 
 const twitterBaseUrl = "http://twitter.com/dotastats_/lists/t-"
 
+const style = {
+	visibility: "hidden",
+}
+
 class TeamTwitter extends Component {
 
 	componentDidUpdate() {
@@ -16,7 +20,7 @@ class TeamTwitter extends Component {
 		return (
 			<div>
 				{ slug !== "" ?
-					<a className="twitter-timeline" href={twitterBaseUrl + slug.toLowerCase()}>
+					<a style={style} className="twitter-timeline" href={twitterBaseUrl + slug.toLowerCase()}>
 						Tweets from {slug}
 					</a>
 					: ""
