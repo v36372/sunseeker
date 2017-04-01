@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchMatches } from '../actions'
+import dayBefore from '../helper/date'
 
 const style = {
     marginBottom: 12
@@ -9,6 +10,7 @@ const style = {
 class MatchesFilter extends Component {
 
     applyFilter = ev => this.props.dispatch(fetchMatches({
+        date_from: dayBefore(),
         game: this.props.game,
         status: ev.target.value
     }));
