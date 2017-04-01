@@ -13,7 +13,7 @@ class Csgo extends Component {
             limit: 50,
             time_from: dayBefore(),
             game: 'csgo',
-            status: all
+            status: 'all'
         }));
     }
 
