@@ -6,13 +6,17 @@ import {Card, CardHeader, CardTitle, CardText} from 'material-ui/Card'
 import {grey600, grey50} from 'material-ui/styles/colors'
 import DatePicker from 'material-ui/DatePicker'
 import F10KHistory from '../components/F10KHistory'
+import TeamTwitter from '../components/TeamTwitter'
 import ResultList from '../components/ResultList'
 import NavigationBar from '../components/NavigationBar'
+import { fetchTeamInfo } from '../actions'
+import slugify from '../helper/slugify'
 
 class TeamDetail extends Component {
 
     componentDidMount () {
         this.props.dispatch(fetchTeam(this.props.params.name));
+        this.props.dispatch(fetchTeamInfo(slugify(this.props.params.name), "csgo"));
     }
 
     getRecent = () => {
@@ -20,8 +24,11 @@ class TeamDetail extends Component {
 	};
 
     render () {
-        const { teamDetail } = this.props;
-        const { teamHistory } = this.props;
+        const { teamDetail, teamHistory, teamInfo } = this.props;
+		let teamSlug =  ""
+		if (teamInfo.length > 0) {
+			teamSlug = teamInfo[0].slug
+		}
         const teamName = this.props.params.name.toLowerCase();
 
         return (
@@ -55,6 +62,9 @@ class TeamDetail extends Component {
                         	</div>
                     	</Card>
 					</div>
+					<div className="col-sm-6">
+						<TeamTwitter slug={teamSlug}/>
+					</div>
                 </div>
             	</div>
 			</div>
@@ -65,7 +75,8 @@ class TeamDetail extends Component {
 const mapStateToProps = state => {
     return {
         teamDetail: state.team.teamDetail,
-		teamHistory: state.team.teamHistory
+		teamHistory: state.team.teamHistory,
+		teamInfo: state.team.teamInfo
     }
 };
 

@@ -1,20 +1,29 @@
 import React, { Component } from 'react'
 
-const twitterBaseUrl = "https://twitter.com/v36372/lists/"
+const twitterBaseUrl = "http://twitter.com/dotastats_/lists/t-"
 
 class TeamTwitter extends Component {
 
-    render () {
-		const { twitter } = this.props
+	componentDidUpdate() {
+		if (window.twttr) {
+			window.twttr.widgets.load()
+		}
+	}
 
-        return (
-            <div>
-				<a className="twitter-timeline" href={twitterBaseUrl + twitter.shortName}>
-					Tweets from {twitter.shortName}
-				</a>
-            </div>
-        )
-    }
+	render () {
+		const { slug } = this.props
+
+		return (
+			<div>
+				{ slug !== "" ?
+					<a className="twitter-timeline" href={twitterBaseUrl + slug.toLowerCase()}>
+						Tweets from {slug}
+					</a>
+					: ""
+				}
+			</div>
+		)
+	}
 }
 
 export default TeamTwitter

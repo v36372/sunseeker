@@ -32,6 +32,29 @@ export const fetchMatches = params => dispatch => {
         .then(json => dispatch(receiveMatches(json)))
 };
 
+// Actions for team info
+export const REQUEST_TEAM_INFO = 'REQUEST_TEAM_INFO';
+export const RECEIVE_TEAM_INFO = 'RECEIVE_TEAM_INFO';
+
+export const requestTeamInfo = (slug, game) => ({
+    type: REQUEST_TEAM_INFO,
+    teamSlug: slug,
+	game: game
+});
+
+export const receiveTeamInfo = (json) => ({
+    type: RECEIVE_TEAM_INFO,
+    teamInfo: json,
+    receivedAt: Date.now()
+});
+
+export const fetchTeamInfo = (slug, game) => dispatch => {
+    dispatch(requestTeamInfo(slug, game));
+    return fetch(`${STATS_API}/team-info/${slug}?game=${game}`)
+        .then(response => response.json())
+        .then(json => dispatch(receiveTeamInfo(json)))
+};
+
 // Actions for match detail
 export const REQUEST_MATCH = 'REQUEST_MATCH';
 export const RECEIVE_MATCH = 'RECEIVE_MATCH';
