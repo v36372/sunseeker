@@ -27,9 +27,18 @@
 
 .TableRow-body-image {
   display: inline-block;
+  position: relative;
   img {
     height: 55px;
     width: 91px;
+  }
+
+  img.winner-tick {
+    position: absolute;
+    right: -40px;
+    top: 0;
+    height: 50px;
+    width: 50px;
   }
 }
 

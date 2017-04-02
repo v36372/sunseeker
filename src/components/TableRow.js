@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Moment from 'react-moment'
 import {Link} from 'react-router';
 import {Card} from 'material-ui/Card';
+import Tick from './images/Tick.png'
 
 class TableRow extends Component {
     render () {
@@ -40,6 +41,13 @@ class TableRow extends Component {
                                 <div className="col-sm-2">
                                     <div className="TableRow-body-image text-center">
                                         <img src={match.logo_a} alt={match.teama}/>
+                                        {
+                                            match.winner === match.teama
+                                                ?
+                                                    <img src={Tick} alt="winner" className="winner-tick"/>
+                                                :
+                                                    ""
+                                        }
                                     </div>
                                 </div>
                                 <div className="col-sm-2 text-center">
@@ -56,6 +64,13 @@ class TableRow extends Component {
                                 <div className="col-sm-2">
                                     <div className="TableRow-body-image text-center">
                                         <img src={match.logo_b} alt={match.teamb}/>
+                                        {
+                                            match.winner === match.teamb
+                                            ?
+                                                <img src={Tick} alt="winner" className="winner-tick"/>
+                                            :
+                                                ""
+                                        }
                                     </div>
                                 </div>
                                 <div className="col-sm-2">
