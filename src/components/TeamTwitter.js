@@ -2,9 +2,14 @@ import React, { Component } from 'react'
 
 const twitterBaseUrl = "http://twitter.com/dotastats_/lists/t-"
 
-const style = {
-	visibility: "hidden",
-}
+const styleEmbed = {
+	visibility: 'hidden'
+};
+
+const twitterContainer = {
+	maxHeight: '700px',
+	overflowY: 'scroll'
+};
 
 class TeamTwitter extends Component {
 
@@ -15,12 +20,16 @@ class TeamTwitter extends Component {
 	}
 
 	render () {
-		const { slug } = this.props
+		const { slug } = this.props;
 
 		return (
-			<div>
-				{ slug !== "" ?
-					<a style={style} className="twitter-timeline" href={twitterBaseUrl + slug.toLowerCase()}>
+			<div className="Twitter" style={twitterContainer}>
+				{
+					slug !== ""
+					?
+					<a style={styleEmbed}
+					   className="twitter-timeline"
+					   href={twitterBaseUrl + slug.toLowerCase()}>
 						Tweets from {slug}
 					</a>
 					: ""
