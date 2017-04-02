@@ -18,8 +18,8 @@ class TeamTwitter extends Component {
 			window.twttr.widgets.load()
 		}
 	}
-
 	render () {
+
 		const { slug } = this.props;
 
 		return (
