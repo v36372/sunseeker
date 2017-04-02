@@ -9,7 +9,7 @@ import Moment from 'react-moment'
 class F10KHistory extends Component {
 
 	matchScore = (match) => {
-        if(match.scorea && match.scoreb)
+        if(typeof match.scorea !== 'undefined' && match.scoreb !== 'undefined')
             return `${match.scorea} - ${match.scoreb}`;
         else {
              return 'No Info';
