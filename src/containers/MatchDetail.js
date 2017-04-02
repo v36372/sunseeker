@@ -40,7 +40,7 @@ class MatchDetail extends Component {
                     <div className="row">
                         <div className="col-md-2">
                             <div className="TableRow-body-name">
-                                <Link to={"/team/"+match.teama}>
+                                <Link to={`/team/${match.teama}?game=${match.game}`}>
                                     {match.teama}
                                 </Link>
                                 <div>{match.ratioa}</div>
@@ -48,7 +48,7 @@ class MatchDetail extends Component {
                         </div>
                         <div className="col-md-2">
                             <div className="TableRow-body-image text-center">
-                                <Link to={"/team/"+match.teama}>
+                                <Link to={`/team/${match.teama}?game=${match.game}`}>
                                     <img src={match.logo_a} alt={match.teama}/>
                                 </Link>
                             </div>
@@ -66,14 +66,14 @@ class MatchDetail extends Component {
                         </div>
                         <div className="col-md-2">
                             <div className="TableRow-body-image text-center">
-                                <Link to={"/team/"+match.teamb}>
+                                <Link to={`/team/${match.teamb}?game=${match.game}`}>
                                     <img src={match.logo_b} alt={match.teamb}/>
                                 </Link>
                             </div>
                         </div>
                         <div className="col-md-2">
                             <div className="TableRow-body-name text-right">
-                                <Link to={"/team/"+match.teamb}>
+                                <Link to={`/team/${match.teamb}?game=${match.game}`}>
                                     {match.teamb}
                                 </Link>
                                 <div>{match.ratiob}</div>
