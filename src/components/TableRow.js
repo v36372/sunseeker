@@ -10,7 +10,7 @@ class TableRow extends Component {
         return (
             <div>
             {
-                match.mode_name === "Match Winner"
+                match.mode_name === "Match Winner" || match.expand === true
                 ?
                 <Link to={`/match/${match.id}`}>
                     <Card className="TableRow row u-position--relative">
