@@ -38,8 +38,8 @@ class TableRow extends Component {
                                         <div>{match.ratioa}</div>
                                     </div>
                                 </div>
-                                <div className="col-sm-2">
-                                    <div className="TableRow-body-image text-center">
+                                <div className="col-sm-2 text-right">
+                                    <div className="TableRow-body-image">
                                         <img src={match.logo_a} alt={match.teama}/>
                                         {
                                             match.winner === match.teama
