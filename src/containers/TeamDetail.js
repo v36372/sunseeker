@@ -28,7 +28,7 @@ class TeamDetail extends Component {
         const { teamDetail, teamHistory, teamInfo } = this.props;
 		let teamSlug =  "";
 		if (teamInfo && teamInfo.slug) {
-			teamSlug = teamInfo.slug;
+			teamSlug =  teamInfo.game + "-" + teamInfo.slug;
 		}
         const teamName = this.props.params.name.toLowerCase();
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-const twitterBaseUrl = "http://twitter.com/dotastats_/lists/t-"
+const twitterBaseUrl = "http://twitter.com/dotastats_/lists/"
 
 const styleEmbed = {
 	visibility: 'hidden'
