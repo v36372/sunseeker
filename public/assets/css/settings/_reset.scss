@@ -12,6 +12,11 @@ p {
   padding: 0;
 }
 
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 button,
 select,
 textarea,
