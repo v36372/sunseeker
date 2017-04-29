@@ -4,6 +4,7 @@ import Moment from 'react-moment'
 import {Link} from 'react-router';
 import NavigationBar from '../components/NavigationBar'
 import { fetchMatch } from '../actions'
+import Tick from '../components/images/Tick.png'
 
 class MatchDetail extends Component {
 
@@ -57,7 +58,13 @@ class MatchDetail extends Component {
                             </div>
                             <div className="col-md-4 text-center">
                                 <div className="Match-score">
+                                    { match.winner === match.teama
+                                        ? <img src={Tick} alt="winner" className="Match-tick"/> : ""
+                                    }
                                     { match.status === "Settled" ? match.scorea + ' - ' + match.scoreb : '0 - 0' }
+                                    { match.winner === match.teamb
+                                        ? <img src={Tick} alt="winner" className="Match-tick"/> : ""
+                                    }
                                 </div>
                             </div>
                             <div className="col-md-4">
