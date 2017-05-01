@@ -67,7 +67,7 @@ class TableRow extends Component {
                                         {
                                             match.winner === match.teamb
                                             ?
-                                                <img src={Tick} alt="winner" className="winner-tick"/>
+                                                <img src={Tick} alt="winner" className="winner-tick winner-tick--right"/>
                                             :
                                                 ""
                                         }
@@ -102,7 +102,11 @@ class TableRow extends Component {
                         <Card className="TableRow-footer row u-position--relative">
                             <div className="row">
                                 <div className="col-sm-8">
-                                    {match.tournament} - {match.mode_name}
+                                    {
+                                        match.winner ?
+                                        `${match.tournament} - ${match.mode_name} - ${match.winner} won`
+                                        : `${match.tournament} - ${match.mode_name}`
+                                    }
                                 </div>
                                 <div className="col-sm-4 text-right">
                                     {
