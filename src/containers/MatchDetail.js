@@ -23,7 +23,11 @@ class MatchDetail extends Component {
 
                         <div className="Match-title row">
                             <div className="col-md-6">
-                                {match.tournament} - {match.mode_name}
+                                {
+                                    match.game ?
+                                        `${match.game.toUpperCase()}  - ${match.tournament} - ${match.mode_name}`
+                                    : `Game - ${match.tournament} - ${match.mode_name}`
+                                }
                             </div>
                             <div className="col-md-6 text-right">
                                 {
@@ -42,9 +46,12 @@ class MatchDetail extends Component {
 
                         <div className="row">
                             <div className="col-md-4">
-                                <div className="row text-center">
+                                <div className="row text-center u-position--relative">
                                     <Link to={`/team/${match.teama}?game=${match.game}`}>
                                         <img className="Match-team-logo" src={match.logo_a} alt={match.teama}/>
+                                        { match.winner === match.teama
+                                            ? <img src={Tick} alt="winner" className="Match-tick"/> : ""
+                                        }
                                     </Link>
                                 </div>
                                 <div className="row text-center">
@@ -58,18 +65,15 @@ class MatchDetail extends Component {
                             </div>
                             <div className="col-md-4 text-center">
                                 <div className="Match-score">
-                                    { match.winner === match.teama
-                                        ? <img src={Tick} alt="winner" className="Match-tick"/> : ""
-                                    }
                                     { match.status === "Settled" ? match.scorea + ' - ' + match.scoreb : '0 - 0' }
-                                    { match.winner === match.teamb
-                                        ? <img src={Tick} alt="winner" className="Match-tick"/> : ""
-                                    }
                                 </div>
                             </div>
                             <div className="col-md-4">
-                                <div className="row text-center">
+                                <div className="row text-center u-position--relative">
                                     <Link to={`/team/${match.teamb}?game=${match.game}`}>
+                                        { match.winner === match.teamb
+                                            ? <img src={Tick} alt="winner" className="Match-tick Match-tick--right"/> : ""
+                                        }
                                         <img className="Match-team-logo" src={match.logo_b} alt={match.teamb}/>
                                     </Link>
                                 </div>
