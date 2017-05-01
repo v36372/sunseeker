@@ -10,12 +10,16 @@ $dark-gray: #474747;
 $dark: #1e2124;
 $dark-post: #d8d8d8;
 $gray-border: #979797;
-$black: #000;
+$black: #333;
 $red: #9e2719;
 
 $primary: #9E2719;
 $text: $dark-gray;
 $meta: $medium-gray;
+
+html {
+  color: $black;
+}
 
 hr {
   margin-top: 20px;
