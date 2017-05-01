@@ -35,10 +35,14 @@
 
   img.winner-tick {
     position: absolute;
-    right: -40px;
+    right: -50px;
     top: 0;
     height: 50px;
     width: 50px;
+  }
+
+  img.winner-tick--right {
+    left: -50px;
   }
 }
 
