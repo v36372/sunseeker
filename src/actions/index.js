@@ -1,12 +1,51 @@
+import serialize from '../helper/serialize'
+
 const STATS_API = 'https://dotabetstats.herokuapp.com';
 
-let serialize = function(obj) {
-    let str = [];
-    for(let p in obj)
-        if (obj.hasOwnProperty(p)) {
-            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        }
-    return str.join("&");
+// match history for team page
+export const REQUEST_HISTORY = 'REQUEST_HISTORY';
+export const RECEIVE_HISTORY = 'RECEIVE_HISTORY';
+
+export const requestHistory = (id) => ({
+  type: REQUEST_HISTORY,
+  teamId: id
+});
+
+export const receiveHistory = (json) => ({
+  type: RECEIVE_HISTORY,
+  teamHistory: json,
+  receivedAt: Date.now()
+});
+
+export const fetchHistory = id => dispatch => {
+  dispatch(requestHistory(id));
+  return fetch(`${STATS_API}/team/${id}`)
+    .then(response => response.json())
+    .then(json => dispatch(receiveHistory(json)))
+};
+
+// match history for match page
+export const REQUEST_HISTORY_MATCH = 'REQUEST_HISTORY_MATCH';
+export const RECEIVE_HISTORY_MATCH = 'RECEIVE_HISTORY_MATCH';
+
+export const requestHistoryMatch = (id, side) => ({
+    type: REQUEST_HISTORY_MATCH,
+    teamId: id,
+    teamSide: side
+});
+
+export const receiveHistoryMatch = (json, side) => ({
+    type: RECEIVE_HISTORY_MATCH,
+    teamHistory: json,
+    teamSide: side,
+    receivedAt: Date.now(),
+});
+
+export const fetchHistoryMatch = (id, side) => dispatch => {
+    dispatch(requestHistoryMatch(id, side));
+    return fetch(`${STATS_API}/team/${id}`)
+        .then(response => response.json())
+        .then(json => dispatch(receiveHistoryMatch(json, side)))
 };
 
 // Actions for matches
@@ -30,6 +69,28 @@ export const fetchMatches = params => dispatch => {
     return fetch(endPoint)
         .then(response => response.json())
         .then(json => dispatch(receiveMatches(json)))
+};
+
+// Actions for team detail
+export const REQUEST_TEAM = 'REQUEST_TEAM';
+export const RECEIVE_TEAM = 'RECEIVE_TEAM';
+
+export const requestTeam = (id) => ({
+  type: REQUEST_TEAM,
+  teamId: id
+});
+
+export const receiveTeam = (json) => ({
+  type: RECEIVE_TEAM,
+  teamDetail: json,
+  receivedAt: Date.now()
+});
+
+export const fetchTeam = id => dispatch => {
+    dispatch(requestTeam(id));
+    return fetch(`${STATS_API}/team/${id}/f10k`)
+        .then(response => response.json())
+        .then(json => dispatch(receiveTeam(json)))
 };
 
 // Actions for team info
@@ -75,47 +136,8 @@ export const fetchMatch = id => dispatch => {
     return fetch(`${STATS_API}/matches/${id}`)
         .then(response => response.json())
         .then(json => dispatch(receiveMatch(json)))
-};
-
-// Actions for team detail
-export const REQUEST_TEAM = 'REQUEST_TEAM';
-export const RECEIVE_TEAM = 'RECEIVE_TEAM';
-
-export const requestTeam = (id) => ({
-    type: REQUEST_TEAM,
-    teamId: id
-});
-
-export const receiveTeam = (json) => ({
-    type: RECEIVE_TEAM,
-    teamDetail: json,
-    receivedAt: Date.now()
-});
-
-export const fetchTeam = id => dispatch => {
-    dispatch(requestTeam(id));
-    return fetch(`${STATS_API}/team/${id}/f10k`)
-        .then(response => response.json())
-        .then(json => dispatch(receiveTeam(json)))
-};
-
-export const REQUEST_HISTORY = 'REQUEST_HISTORY';
-export const RECEIVE_HISTORY = 'RECEIVE_HISTORY';
-
-export const requestHistory = (id) => ({
-    type: REQUEST_HISTORY,
-    teamId: id
-});
-
-export const receiveHistory = (json) => ({
-    type: RECEIVE_HISTORY,
-    teamHistory: json,
-    receivedAt: Date.now()
-});
-
-export const fetchHistory = id => dispatch => {
-    dispatch(requestHistory(id));
-    return fetch(`${STATS_API}/team/${id}`)
-        .then(response => response.json())
-        .then(json => dispatch(receiveHistory(json)))
+        .then(json => {
+            dispatch(fetchHistoryMatch(json.matchDetail.teama, 'teama'));
+            dispatch(fetchHistoryMatch(json.matchDetail.teamb, 'teamb'));
+        })
 };
