@@ -3,10 +3,13 @@ import {
 } from '../actions'
 
 const match = (state = {
-                  isFetching: false,
-                  matchDetail: {},
-                    teamMatchHistory: {},
-              }, action) => {
+    isFetching: false,
+    matchDetail: {},
+    teamMatchHistory: {
+        teama: [],
+        teamb: []
+    },
+}, action) => {
     switch (action.type) {
         case REQUEST_HISTORY_MATCH:
             return {

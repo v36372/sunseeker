@@ -13,7 +13,8 @@ class MatchDetail extends Component {
     }
 
     render () {
-        const { match } = this.props;
+        const { match, matchHistory } = this.props;
+        console.log(matchHistory.teama);
 
         return (
             <div className="MatchDetail">
@@ -90,6 +91,33 @@ class MatchDetail extends Component {
 
                         <hr/>
 
+                        <div className="ScoreGroup">
+                            {matchHistory.teama
+                                ? <div className="Score">
+                                    {matchHistory.teama.map(games =>
+                                        <div className="Score-group" key={games.series_id}>
+                                            {games.matches.map(game =>
+                                                <div className="Score-item">{game.matchname}</div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                                : <p>Not found team A match history</p>
+                            }
+                            {matchHistory.teamb
+                                ? <div className="Score">
+                                    {matchHistory.teamb.map(games =>
+                                        <div className="Score-group" key={games.series_id}>
+                                            {games.matches.map(game =>
+                                                <div className="Score-item">{game.matchname}</div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                                : <p>Not found team B match history</p>
+                            }
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -99,7 +127,8 @@ class MatchDetail extends Component {
 
 const mapStateToProps = state => {
     return {
-        match: state.match.matchDetail
+        match: state.match.matchDetail,
+        matchHistory: state.match.teamMatchHistory
     }
 };
 
