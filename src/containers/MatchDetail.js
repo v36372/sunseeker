@@ -93,7 +93,7 @@ class MatchDetail extends Component {
                         <div className="ScoreGroup">
                             {Object.keys(matchHistoryA).length !== 0
                                 ? <div className="Score col-sm-6">
-                                    {matchHistoryA.map(games =>
+                                    {matchHistoryA.slice(0, 10).map(games =>
                                         <div className="Score-group" key={games.series_id}>
                                             {games.matches.map(game =>
                                                 <div className="Score-item" key={game.id}>{game.matchname}</div>
@@ -104,8 +104,8 @@ class MatchDetail extends Component {
                                 : <p>Loading</p>
                             }
                             {Object.keys(matchHistoryB).length !== 0
-                                ? <div className="Score col-sm-6 table">
-                                    {matchHistoryB.map(games =>
+                                ? <div className="Score col-sm-6">
+                                    {matchHistoryB.slice(0, 10).map(games =>
                                         <div className="Score-group" key={games.series_id}>
                                             {games.matches.map(game =>
                                                 <div className="Score-item" key={game.id}>{game.matchname}</div>
