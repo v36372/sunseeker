@@ -13,8 +13,7 @@ class MatchDetail extends Component {
     }
 
     render () {
-        const { match, matchHistory } = this.props;
-        console.log(matchHistory.teama);
+        const { match, matchHistoryA, matchHistoryB } = this.props;
 
         return (
             <div className="MatchDetail">
@@ -92,29 +91,29 @@ class MatchDetail extends Component {
                         <hr/>
 
                         <div className="ScoreGroup">
-                            {matchHistory.teama
-                                ? <div className="Score">
-                                    {matchHistory.teama.map(games =>
+                            {Object.keys(matchHistoryA).length !== 0
+                                ? <div className="Score col-sm-6">
+                                    {matchHistoryA.map(games =>
                                         <div className="Score-group" key={games.series_id}>
                                             {games.matches.map(game =>
-                                                <div className="Score-item">{game.matchname}</div>
+                                                <div className="Score-item" key={game.id}>{game.matchname}</div>
                                             )}
                                         </div>
                                     )}
                                 </div>
-                                : <p>Not found team A match history</p>
+                                : <p>Loading</p>
                             }
-                            {matchHistory.teamb
-                                ? <div className="Score">
-                                    {matchHistory.teamb.map(games =>
+                            {Object.keys(matchHistoryB).length !== 0
+                                ? <div className="Score col-sm-6 table">
+                                    {matchHistoryB.map(games =>
                                         <div className="Score-group" key={games.series_id}>
                                             {games.matches.map(game =>
-                                                <div className="Score-item">{game.matchname}</div>
+                                                <div className="Score-item" key={game.id}>{game.matchname}</div>
                                             )}
                                         </div>
                                     )}
                                 </div>
-                                : <p>Not found team B match history</p>
+                                : <p>Loading</p>
                             }
                         </div>
 
@@ -128,7 +127,8 @@ class MatchDetail extends Component {
 const mapStateToProps = state => {
     return {
         match: state.match.matchDetail,
-        matchHistory: state.match.teamMatchHistory
+        matchHistoryA: state.match.teamMatchHistoryA,
+        matchHistoryB: state.match.teamMatchHistoryB
     }
 };
 

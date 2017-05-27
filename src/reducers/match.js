@@ -5,10 +5,8 @@ import {
 const match = (state = {
     isFetching: false,
     matchDetail: {},
-    teamMatchHistory: {
-        teama: [],
-        teamb: []
-    },
+    teamMatchHistoryA: {},
+    teamMatchHistoryB: {},
 }, action) => {
     switch (action.type) {
         case REQUEST_HISTORY_MATCH:
@@ -18,14 +16,21 @@ const match = (state = {
                 id: action.teamId,
             };
         case RECEIVE_HISTORY_MATCH:
-            const obj = Object.assign(state.teamMatchHistory);
-            obj[action.teamSide] = action.teamHistory;
-            return {
-                ...state,
-                isFetching: false,
-                teamMatchHistory: obj,
-                lastUpdated: action.receivedAt
-            };
+            if (action.teamSide === 'teama') {
+                return {
+                    ...state,
+                    isFetching: false,
+                    teamMatchHistoryA: action.teamHistory,
+                    lastUpdated: action.receivedAt
+                };
+            } else {
+                return {
+                    ...state,
+                    isFetching: false,
+                    teamMatchHistoryB: action.teamHistory,
+                    lastUpdated: action.receivedAt
+                };
+            }
         case REQUEST_MATCH:
             return {
                 ...state,
