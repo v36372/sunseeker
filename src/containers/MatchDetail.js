@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Moment from 'react-moment'
 import {Link} from 'react-router';
 import NavigationBar from '../components/NavigationBar'
+import ResultList from '../components/ResultList'
 import { fetchMatch } from '../actions'
 import Tick from '../components/images/Tick.png'
 
@@ -109,49 +110,36 @@ class MatchDetail extends Component {
                                             </tr>
                                     ))
                                     : isLoadingHistoryBoth
-                                        ? <p>Loading</p> : <p>No match</p>
+                                        ? <p>Loading</p> : <p>No mutual match</p>
                                 }
                             </div>
                         </div>
 
                         <div className="ScoreGroup">
-                            {
-                                Array.isArray(matchHistoryA) && matchHistoryA.length
-                                ? <div className="Score col-sm-6">
-                                    <table className="table table-hover">
-                                        <tbody>
-                                        {matchHistoryA.slice(0, 5).map(games =>
-                                            games.matches.map(game =>
-                                                <tr>
-                                                    <td key={game.id}>{game.matchname}</td>
-                                                </tr>
-                                            )
-                                        )}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                : isLoadingHistoryA
-                                    ? <p>Loading</p> : <p>No match</p>
-                            }
-                            {
-                                Array.isArray(matchHistoryB) && matchHistoryB.length
-                                ? <div className="Score col-sm-6">
-                                    <table className="table table-hover">
-                                        <tbody>
-                                        {
-                                            matchHistoryB.slice(0, 5).map(games =>
-                                            games.matches.map(game =>
-                                                <tr>
-                                                    <td key={game.id}>{game.matchname}</td>
-                                                </tr>
-                                            )
-                                        )}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                : isLoadingHistoryB
-                                    ? <p>Loading</p> : <p>No match</p>
-                            }
+                            <div className="Score col-sm-6">
+                                {
+                                    Array.isArray(matchHistoryA) && matchHistoryA.length
+                                        ? <ResultList
+                                            teamName={match.teama}
+                                            title={`${match.teama} matches history`}
+                                            resultList={matchHistoryA}
+                                    />
+                                        : isLoadingHistoryA
+                                        ? <p>Loading</p> : <p>No {match.teama} match</p>
+                                }
+                            </div>
+                            <div className="Score col-sm-6">
+                                {
+                                    Array.isArray(matchHistoryB) && matchHistoryB.length
+                                        ? <ResultList
+                                        teamName={match.teamb}
+                                        title={`${match.teamb} matches history`}
+                                        resultList={matchHistoryB}
+                                    />
+                                        : isLoadingHistoryB
+                                        ? <p>Loading</p> : <p>No match</p>
+                                }
+                            </div>
                         </div>
 
                     </div>

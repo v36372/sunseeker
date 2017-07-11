@@ -26,11 +26,17 @@ class ResultList extends Component {
         const { teamName, title, getData } = this.props;
 
         return (
-            <Card style={{ 'marginTop': '10px'}}>
+            <Card
+                style={{
+                    marginTop: '10px',
+                    maxWidth: '500px',
+                    margin: '0 auto',
+                }}
+            >
                 <CardHeader
                     actAsExpander
                     title={title}
-                    onClick={getData}
+                    onClick={getData || null}
                     style={{ backgroundColor: grey600 }}
                     titleColor={grey50}
                     showExpandableButton={true}
