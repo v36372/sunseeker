@@ -48,6 +48,29 @@ export const fetchHistoryMatch = (id, side) => dispatch => {
         .then(json => dispatch(receiveHistoryMatch(json, side)))
 };
 
+// mutual history between two teams
+export const REQUEST_MUTUAL_HISTORY = 'REQUEST_MUTUAL_HISTORY';
+export const RECEIVE_MUTUAL_HISTORY = 'RECEIVE_MUTUAL_HISTORY';
+
+export const requestMutualHistory = (teamA, teamB) => ({
+    type: REQUEST_MUTUAL_HISTORY,
+    teamA: teamA,
+    teamB: teamB
+});
+
+export const receiveMutualHistory = (json) => ({
+    type: RECEIVE_MUTUAL_HISTORY,
+    mutualHistory: json,
+    receivedAt: Date.now(),
+});
+
+export const fetchMutualHistory = (teamA, teamB) => dispatch => {
+    dispatch(requestMutualHistory(teamA, teamB));
+    return fetch(`${STATS_API}/history?teama=${teamA}&teamb=${teamB}`)
+        .then(response => response.json())
+        .then(json => dispatch(receiveMutualHistory(json)))
+};
+
 // Actions for matches
 export const REQUEST_MATCHES = 'REQUEST_MATCHES';
 export const RECEIVE_MATCHES = 'RECEIVE_MATCHES';
@@ -137,6 +160,7 @@ export const fetchMatch = id => dispatch => {
         .then(response => response.json())
         .then(json => dispatch(receiveMatch(json)))
         .then(json => {
+            dispatch(fetchMutualHistory(json.matchDetail.teama, json.matchDetail.teamb));
             dispatch(fetchHistoryMatch(json.matchDetail.teama, 'teama'));
             dispatch(fetchHistoryMatch(json.matchDetail.teamb, 'teamb'));
         })

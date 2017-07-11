@@ -13,7 +13,15 @@ class MatchDetail extends Component {
     }
 
     render () {
-        const { match, matchHistoryA, matchHistoryB } = this.props;
+        const {
+            match,
+            matchHistoryA,
+            matchHistoryB,
+            mutualHistory,
+            isLoadingHistoryA,
+            isLoadingHistoryB,
+            isLoadingHistoryBoth,
+        } = this.props;
 
         return (
             <div className="MatchDetail">
@@ -91,29 +99,58 @@ class MatchDetail extends Component {
                         <hr/>
 
                         <div className="ScoreGroup">
-                            {Object.keys(matchHistoryA).length !== 0
+                            <div className="col-sm-12">
+                                {
+                                    Array.isArray(mutualHistory) && mutualHistory.length
+                                    ? mutualHistory.slice(0, 10).map(games =>
+                                        games.matches.map(game =>
+                                            <tr>
+                                                <td key={game.id}>{game.matchname}</td>
+                                            </tr>
+                                    ))
+                                    : isLoadingHistoryBoth
+                                        ? <p>Loading</p> : <p>No match</p>
+                                }
+                            </div>
+                        </div>
+
+                        <div className="ScoreGroup">
+                            {
+                                Array.isArray(matchHistoryA) && matchHistoryA.length
                                 ? <div className="Score col-sm-6">
-                                    {matchHistoryA.slice(0, 10).map(games =>
-                                        <div className="Score-group" key={games.series_id}>
-                                            {games.matches.map(game =>
-                                                <div className="Score-item" key={game.id}>{game.matchname}</div>
-                                            )}
-                                        </div>
-                                    )}
+                                    <table className="table table-hover">
+                                        <tbody>
+                                        {matchHistoryA.slice(0, 5).map(games =>
+                                            games.matches.map(game =>
+                                                <tr>
+                                                    <td key={game.id}>{game.matchname}</td>
+                                                </tr>
+                                            )
+                                        )}
+                                        </tbody>
+                                    </table>
                                 </div>
-                                : <p>Loading</p>
+                                : isLoadingHistoryA
+                                    ? <p>Loading</p> : <p>No match</p>
                             }
-                            {Object.keys(matchHistoryB).length !== 0
+                            {
+                                Array.isArray(matchHistoryB) && matchHistoryB.length
                                 ? <div className="Score col-sm-6">
-                                    {matchHistoryB.slice(0, 10).map(games =>
-                                        <div className="Score-group" key={games.series_id}>
-                                            {games.matches.map(game =>
-                                                <div className="Score-item" key={game.id}>{game.matchname}</div>
-                                            )}
-                                        </div>
-                                    )}
+                                    <table className="table table-hover">
+                                        <tbody>
+                                        {
+                                            matchHistoryB.slice(0, 5).map(games =>
+                                            games.matches.map(game =>
+                                                <tr>
+                                                    <td key={game.id}>{game.matchname}</td>
+                                                </tr>
+                                            )
+                                        )}
+                                        </tbody>
+                                    </table>
                                 </div>
-                                : <p>Loading</p>
+                                : isLoadingHistoryB
+                                    ? <p>Loading</p> : <p>No match</p>
                             }
                         </div>
 
@@ -127,8 +164,12 @@ class MatchDetail extends Component {
 const mapStateToProps = state => {
     return {
         match: state.match.matchDetail,
+        mutualHistory: state.match.mutualHistory,
         matchHistoryA: state.match.teamMatchHistoryA,
-        matchHistoryB: state.match.teamMatchHistoryB
+        matchHistoryB: state.match.teamMatchHistoryB,
+        isLoadingHistoryA: state.match.isLoadingHistoryA,
+        isLoadingHistoryB: state.match.isLoadingHistoryB,
+        isLoadingHistoryBoth: state.match.isLoadingHistoryBoth,
     }
 };
 
