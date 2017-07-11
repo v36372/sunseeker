@@ -23,11 +23,18 @@ class ResultList extends Component {
 
     render () {
         const { resultList } = this.props || [];
-        const { teamName } = this.props;
+        const { teamName, title, getData } = this.props;
 
         return (
             <Card style={{ 'marginTop': '10px'}}>
-                <CardHeader title="Matches History" actAsExpander onClick={this.props.getRecent} style={{ backgroundColor: grey600 }} titleColor={grey50} showExpandableButton={true}/>
+                <CardHeader
+                    actAsExpander
+                    title={title}
+                    onClick={getData}
+                    style={{ backgroundColor: grey600 }}
+                    titleColor={grey50}
+                    showExpandableButton={true}
+                />
                 <CardText expandable={true}>
                     <List>
                         {
@@ -43,13 +50,20 @@ class ResultList extends Component {
                                                             leftAvatar={
                                                                 match.winner
                                                                     ?
-                                                                        <Avatar color={ match.winner.toLowerCase() === teamName ? lightGreenA700:red700}
-                                                                                backgroundColor={transparent}
-                                                                                style={{left: 8}}>
-                                                                            {match.winner.toLowerCase() === teamName? "W":"L"}
-                                                                        </Avatar>
-                                                                    :
-                                                                        <Avatar/>
+                                                                    <Avatar
+                                                                        color={
+                                                                            match.winner.toLowerCase() === teamName
+                                                                            ? lightGreenA700 : red700
+                                                                        }
+                                                                        backgroundColor={transparent}
+                                                                        style={{left: 8}}
+                                                                    >
+                                                                        {
+                                                                            match.winner.toLowerCase() === teamName
+                                                                            ? "W" : "L"
+                                                                        }
+                                                                    </Avatar>
+                                                                    : <Avatar/>
                                                             }
                                                             rightAvatar={
                                                                 <p>

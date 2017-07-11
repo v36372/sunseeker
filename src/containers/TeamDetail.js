@@ -20,7 +20,7 @@ class TeamDetail extends Component {
         this.props.dispatch(fetchTeamInfo(slugify(this.props.params.name), this.props.location.query.game));
     }
 
-    getRecent = () => {
+    getRecentMatches = () => {
     	this.props.dispatch(fetchHistory(this.props.params.name))
 	};
 
@@ -63,7 +63,12 @@ class TeamDetail extends Component {
 									:
 										""
 								}
-								<ResultList teamName={teamName} resultList={teamHistory} getRecent={this.getRecent} />
+								<ResultList
+									teamName={teamName}
+									title="Matches History"
+									resultList={teamHistory}
+									getData={this.getRecentMatches}
+								/>
 							</CardText>
                     	</Card>
 					</div>
