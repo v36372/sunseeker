@@ -5,13 +5,13 @@ import {
 
 const match = (state = {
     isFetching: false,
-    isLoadingHistoryBoth: true,
+    isLoadingMutualHistory: true,
     isLoadingHistoryA: true,
     isLoadingHistoryB: true,
     matchDetail: {},
     teamMatchHistoryA: {},
     teamMatchHistoryB: {},
-    teamMatchHistoryBoth: {},
+    mutualHistory: {},
 }, action) => {
     switch (action.type) {
         case REQUEST_HISTORY_MATCH:
@@ -26,7 +26,7 @@ const match = (state = {
                     return {
                         ...state,
                         isFetching: false,
-                        isLoadingHistoryB: false,
+                        isLoadingHistoryA: false,
                         teamMatchHistoryA: action.teamHistory,
                         lastUpdated: action.receivedAt
                     };
@@ -67,7 +67,7 @@ const match = (state = {
             return {
                 ...state,
                 isFetching: false,
-                isLoadingHistoryBoth: false,
+                isLoadingMutualHistory: false,
                 mutualHistory: action.mutualHistory,
                 lastUpdated: action.receivedAt
             };

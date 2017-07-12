@@ -21,7 +21,7 @@ class MatchDetail extends Component {
             mutualHistory,
             isLoadingHistoryA,
             isLoadingHistoryB,
-            isLoadingHistoryBoth,
+            isLoadingMutualHistory,
         } = this.props;
 
         return (
@@ -101,17 +101,28 @@ class MatchDetail extends Component {
 
                         <div className="ScoreGroup">
                             <div className="col-sm-12">
-                                {
-                                    Array.isArray(mutualHistory) && mutualHistory.length
-                                    ? mutualHistory.slice(0, 10).map(games =>
-                                        games.matches.map(game =>
-                                            <tr>
-                                                <td key={game.id}>{game.matchname}</td>
-                                            </tr>
-                                    ))
-                                    : isLoadingHistoryBoth
-                                        ? <p>Loading</p> : <p>No mutual match</p>
-                                }
+                                <h4>Mutual matches</h4>
+                                <table className="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Games</th>
+                                        <th>Winner</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            Array.isArray(mutualHistory) && mutualHistory.length
+                                            ? mutualHistory.slice(0, 10).map(game =>
+                                                <tr key={game.id}>
+                                                    <td>{game.matchname}</td>
+                                                    <td>{game.winner}</td>
+                                                </tr>
+                                            )
+                                            : isLoadingMutualHistory
+                                                ? <p>Loading</p> : <p>No mutual match</p>
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
@@ -157,7 +168,7 @@ const mapStateToProps = state => {
         matchHistoryB: state.match.teamMatchHistoryB,
         isLoadingHistoryA: state.match.isLoadingHistoryA,
         isLoadingHistoryB: state.match.isLoadingHistoryB,
-        isLoadingHistoryBoth: state.match.isLoadingHistoryBoth,
+        isLoadingMutualHistory: state.match.isLoadingMutualHistory,
     }
 };
 
