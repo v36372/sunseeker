@@ -131,7 +131,7 @@ class MatchDetail extends Component {
                                 {
                                     Array.isArray(matchHistoryA) && matchHistoryA.length
                                         ? <ResultList
-                                            teamName={match.teama}
+                                            teamName={match.teama.toLowerCase()}
                                             title={`${match.teama} matches history`}
                                             resultList={matchHistoryA}
                                     />
@@ -143,7 +143,7 @@ class MatchDetail extends Component {
                                 {
                                     Array.isArray(matchHistoryB) && matchHistoryB.length
                                         ? <ResultList
-                                        teamName={match.teamb}
+                                        teamName={match.teamb.toLowerCase()}
                                         title={`${match.teamb} matches history`}
                                         resultList={matchHistoryB}
                                     />
