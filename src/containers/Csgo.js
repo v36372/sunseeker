@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import MatchesFilter from './MatchesFilter'
 import NavigationBar from '../components/NavigationBar'
@@ -8,35 +9,40 @@ import dayBefore from '../helper/date'
 
 class Csgo extends Component {
 
-    componentDidMount () {
-        this.props.dispatch(fetchMatches({
-            limit: 50,
-            time_from: dayBefore(),
-            game: 'csgo',
-            status: 'all'
-        }));
-    }
+	static propTypes = {
+		listMatches: PropTypes.array.isRequired,
+		dispatch: PropTypes.func.isRequired
+	}
 
-    render() {
-        const { listMatches } = this.props;
-        return (
-            <div>
-                <NavigationBar />
-                <div className="container">
-                    <div className="row">
-                        <MatchesFilter />
-                    </div>
-                    <ListMatch listMatches={ listMatches } />
-                </div>
-            </div>
-        );
-    }
+	componentDidMount () {
+		this.props.dispatch(fetchMatches({
+			limit: 50,
+			time_from: dayBefore(),
+			game: 'csgo',
+			status: 'all'
+		}));
+	}
+
+	render() {
+		const { listMatches } = this.props;
+		return (
+			<div>
+				<NavigationBar />
+				<div className="container">
+					<div className="row">
+						<MatchesFilter />
+					</div>
+					<ListMatch listMatches={ listMatches } />
+				</div>
+			</div>
+			);
+	}
 }
 
 const mapStateToProps = state => {
-    return {
-        listMatches: state.matches.listMatches
-    }
+	return {
+		listMatches: state.matches.listMatches
+	}
 };
 
 export default connect(mapStateToProps)(Csgo)

@@ -5,10 +5,10 @@ import match from './match'
 import team from './team'
 
 const rootReducer = combineReducers({
-    matches,
-    match,
-    team,
-    routing
+	matches,
+	match,
+	team,
+	routing
 });
 
 export default rootReducer

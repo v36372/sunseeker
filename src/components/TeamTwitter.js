@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 const twitterBaseUrl = "http://twitter.com/dotastats_/lists/"
 
@@ -13,6 +14,10 @@ const twitterContainer = {
 
 class TeamTwitter extends Component {
 
+	static propTypes = {
+		slug: PropTypes.string.isRequired
+	}
+
 	componentDidUpdate() {
 		if (window.twttr) {
 			window.twttr.widgets.load()
@@ -25,17 +30,17 @@ class TeamTwitter extends Component {
 		return (
 			<div className="Twitter" style={twitterContainer}>
 				{
-					slug !== ""
-					?
-					<a style={styleEmbed}
-					   className="twitter-timeline"
-					   href={twitterBaseUrl + slug.toLowerCase()}>
-						Tweets from {slug}
-					</a>
-					: ""
+				slug !== ""
+				?
+				<a style={styleEmbed}
+					className="twitter-timeline"
+					href={twitterBaseUrl + slug.toLowerCase()}>
+					Tweets from {slug}
+				</a>
+				: ""
 				}
 			</div>
-		)
+			)
 	}
 }
 

@@ -5,26 +5,26 @@ import rootReducer from '../reducers'
 
 const configureStore = preloadedState => {
 
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-        || compose;
+	const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+		|| compose;
 
-    const store = createStore(
-        rootReducer,
-        preloadedState,
-        composeEnhancers(
-            applyMiddleware(thunk, createLogger())
-        )
-    );
+	const store = createStore(
+		rootReducer,
+		preloadedState,
+		composeEnhancers(
+			applyMiddleware(thunk, createLogger())
+		)
+	);
 
-    if (module.hot) {
-        // Webpack hot module replacement for reducers
-        module.hot.accept('../reducers', () => {
-            const nextRootReducer = require('../reducers').default;
-            store.replaceReducer(nextRootReducer)
-        })
-    }
+	if (module.hot) {
+		// Webpack hot module replacement for reducers
+		module.hot.accept('../reducers', () => {
+			const nextRootReducer = require('../reducers').default;
+			store.replaceReducer(nextRootReducer)
+		})
+	}
 
-    return store
+	return store
 };
 
 export default configureStore
