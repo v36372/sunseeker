@@ -101,7 +101,7 @@ class MatchDetail extends Component {
 
                         <div className="ScoreGroup">
                             <div className="col-sm-12">
-                                <h4>Mutual matches</h4>
+                                <h4>History Games</h4>
                                 <table className="table table-striped">
                                     <thead>
                                     <tr>
@@ -119,7 +119,7 @@ class MatchDetail extends Component {
                                                 </tr>
                                             )
                                             : isLoadingMutualHistory
-                                                ? <p>Loading</p> : <p>No mutual match</p>
+                                                ? <p>Loading</p> : <p>No history matches between these 2 teams.</p>
                                         }
                                     </tbody>
                                 </table>
