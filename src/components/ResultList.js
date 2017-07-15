@@ -89,7 +89,8 @@ class ResultList extends Component {
 										<Moment fromNow>
 											{match.time}
 										</Moment>
-									</div>}
+									</div>
+									}
 								/>
 
 							<Divider inset={true} />
