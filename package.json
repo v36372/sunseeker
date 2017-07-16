@@ -34,7 +34,7 @@
 	"scripts": {
 		"build-css": "node-sass public/assets/css/style.scss -o public/assets/css/",
 		"watch-css": "npm run build-css && node-sass --watch --recursive public/assets/css/ -o public/assets/css/",
-		"start": "node_modules/eslint/bin/eslint.js ./src && npm run build-css && npm run serve-prod",
+		"start": "npm run build-css && npm run serve-prod",
 		"serve-prod": "REACT_APP_ENV=production react-scripts start",
 		"start-dev": "node_modules/eslint/bin/eslint.js ./src && npm-run-all -p watch-css start-js",
 		"start-js": "react-scripts start",
