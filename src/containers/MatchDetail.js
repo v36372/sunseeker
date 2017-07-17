@@ -109,10 +109,9 @@ class MatchDetail extends Component {
 								</div>
 							</div>
 						</div>
-
 						<div className="ScoreGroup">
 							<div className="col-sm-12">
-								<h4>History Games</h4>
+								<h4>Versus history</h4>
 								<table className="table table-striped">
 									<thead>
 										<tr>
@@ -125,33 +124,7 @@ class MatchDetail extends Component {
 										Array.isArray(mutualHistory) && mutualHistory.length
 										? mutualHistory.slice(0, 10).map(game =>
 										<tr key={game.id}>
-											<td>{game.matchname}</td>
-											<td>{game.winner}</td>
-										</tr>
-										)
-										: isLoadingMutualHistory
-										? <p>Loading</p> : <p>No history matches between these 2 teams.</p>
-										}
-									</tbody>
-								</table>
-							</div>
-						</div>
-
-						<div className="ScoreGroup">
-							<div className="col-sm-12">
-								<h4>Mutual matches</h4>
-								<table className="table table-striped">
-									<thead>
-										<tr>
-											<th>Games</th>
-											<th>Winner</th>
-										</tr>
-									</thead>
-									<tbody>
-										{
-										Array.isArray(mutualHistory) && mutualHistory.length
-										? mutualHistory.slice(0, 10).map(game =>
-										<tr key={game.id}>
+											<td>{game.tournament}</td>
 											<td>{game.matchname}</td>
 											<td>{game.winner}</td>
 										</tr>
@@ -163,7 +136,6 @@ class MatchDetail extends Component {
 								</table>
 							</div>
 						</div>
-
 						<div className="ScoreGroup">
 							<div className="Score col-sm-6">
 								{

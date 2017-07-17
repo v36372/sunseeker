@@ -41,9 +41,9 @@ export const receiveHistoryMatch = (json, side) => ({
 	receivedAt: Date.now(),
 });
 
-export const fetchHistoryMatch = (id, side) => dispatch => {
+export const fetchHistoryMatch = (id, side, game) => dispatch => {
 	dispatch(requestHistoryMatch(id, side));
-	return fetch(`${STATS_API}/team/${id}`)
+	return fetch(`${STATS_API}/team/${id}?game=${game}`)
 		.then(response => response.json())
 		.then(json => dispatch(receiveHistoryMatch(json, side)))
 };
@@ -161,7 +161,7 @@ export const fetchMatch = id => dispatch => {
 		.then(json => dispatch(receiveMatch(json)))
 		.then(json => {
 			dispatch(fetchMutualHistory(json.matchDetail.teama, json.matchDetail.teamb));
-			dispatch(fetchHistoryMatch(json.matchDetail.teama, 'teama'));
-			dispatch(fetchHistoryMatch(json.matchDetail.teamb, 'teamb'));
+			dispatch(fetchHistoryMatch(json.matchDetail.teama, 'teama', json.matchDetail.game));
+			dispatch(fetchHistoryMatch(json.matchDetail.teamb, 'teamb', json.matchDetail.game));
 		})
 };
