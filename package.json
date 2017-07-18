@@ -34,11 +34,11 @@
 	"scripts": {
 		"build-css": "node-sass public/assets/css/style.scss -o public/assets/css/",
 		"watch-css": "npm run build-css && node-sass --watch --recursive public/assets/css/ -o public/assets/css/",
-		"start": "npm run build-css && npm run serve-prod",
-		"serve-prod": "REACT_APP_ENV=production react-scripts start",
-		"start-dev": "node_modules/eslint/bin/eslint.js ./src && npm-run-all -p watch-css start-js",
+		"start": "REACT_APP_ENV=production npm run build-css && npm run serve-prod",
+		"serve-prod": "react-scripts start",
+		"start-dev": "REACT_APP_ENV=development PORT=3001 node_modules/eslint/bin/eslint.js ./src && npm-run-all -p watch-css start-js",
 		"start-js": "react-scripts start",
-		"build": "npm run build-css && react-scripts build",
+		"build": "node_modules/eslint/bin/eslint.js ./src && npm run build-css && react-scripts build",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject"
 	}

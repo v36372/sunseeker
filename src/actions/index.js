@@ -1,6 +1,5 @@
 import serialize from '../helper/serialize'
-
-const STATS_API = 'https://dotabetstats.herokuapp.com';
+import config from '../config'
 
 // match history for team page
 export const REQUEST_HISTORY = 'REQUEST_HISTORY';
@@ -19,7 +18,7 @@ export const receiveHistory = (json) => ({
 
 export const fetchHistory = id => dispatch => {
 	dispatch(requestHistory(id));
-	return fetch(`${STATS_API}/team/${id}`)
+	return fetch(`${config.STATS_API}/team/${id}`)
 		.then(response => response.json())
 		.then(json => dispatch(receiveHistory(json)))
 };
@@ -43,7 +42,7 @@ export const receiveHistoryMatch = (json, side) => ({
 
 export const fetchHistoryMatch = (id, side, game) => dispatch => {
 	dispatch(requestHistoryMatch(id, side));
-	return fetch(`${STATS_API}/team/${id}?game=${game}`)
+	return fetch(`${config.STATS_API}/team/${id}?game=${game}`)
 		.then(response => response.json())
 		.then(json => dispatch(receiveHistoryMatch(json, side)))
 };
@@ -66,7 +65,7 @@ export const receiveMutualHistory = (json) => ({
 
 export const fetchMutualHistory = (teamA, teamB) => dispatch => {
 	dispatch(requestMutualHistory(teamA, teamB));
-	return fetch(`${STATS_API}/history?teama=${teamA}&teamb=${teamB}`)
+	return fetch(`${config.STATS_API}/history?teama=${teamA}&teamb=${teamB}`)
 		.then(response => response.json())
 		.then(json => dispatch(receiveMutualHistory(json)))
 };
@@ -87,7 +86,7 @@ export const receiveMatches = (json) => ({
 });
 
 export const fetchMatches = params => dispatch => {
-	let endPoint = `${STATS_API}/matches?${serialize(params)}`;
+	let endPoint = `${config.STATS_API}/matches?${serialize(params)}`;
 	dispatch(requestMatches(params));
 	return fetch(endPoint)
 		.then(response => response.json())
@@ -111,7 +110,7 @@ export const receiveTeam = (json) => ({
 
 export const fetchTeam = id => dispatch => {
 	dispatch(requestTeam(id));
-	return fetch(`${STATS_API}/team/${id}/f10k`)
+	return fetch(`${config.STATS_API}/team/${id}/f10k`)
 		.then(response => response.json())
 		.then(json => dispatch(receiveTeam(json)))
 };
@@ -134,7 +133,7 @@ export const receiveTeamInfo = (json) => ({
 
 export const fetchTeamInfo = (slug, game) => dispatch => {
 	dispatch(requestTeamInfo(slug, game));
-	return fetch(`${STATS_API}/team-info/${slug}?game=${game}`)
+	return fetch(`${config.STATS_API}/team-info/${slug}?game=${game}`)
 		.then(response => response.json())
 		.then(json => dispatch(receiveTeamInfo(json)))
 };
@@ -156,7 +155,7 @@ export const receiveMatch = (json) => ({
 
 export const fetchMatch = id => dispatch => {
 	dispatch(requestMatch(id));
-	return fetch(`${STATS_API}/matches/${id}`)
+	return fetch(`${config.STATS_API}/matches/${id}`)
 		.then(response => response.json())
 		.then(json => dispatch(receiveMatch(json)))
 		.then(json => {
