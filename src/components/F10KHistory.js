@@ -57,16 +57,15 @@ class F10KHistory extends Component {
 								</div>
 								}
 							/>
-
-						<Divider inset={true} />
-					</div>
-					) 
-					: ''
-					}
-				</List>
-			</CardText>
-		</Card>
-		)
+							<Divider inset={true} />
+						</div>
+						)
+						: ''
+						}
+					</List>
+				</CardText>
+			</Card>
+			)
 }
 }
 
