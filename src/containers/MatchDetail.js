@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Moment from 'react-moment'
 import {Link} from 'react-router';
+import {Card, CardHeader, CardText} from 'material-ui/Card'
+import {grey600, grey50} from 'material-ui/styles/colors'
+import F10KHistory from '../components/F10KHistory'
 import NavigationBar from '../components/NavigationBar'
 import ResultList from '../components/ResultList'
 import { fetchMatch } from '../actions'
@@ -16,6 +19,8 @@ class MatchDetail extends Component {
 		matchHistoryA: PropTypes.object,
 		matchHistoryB: PropTypes.object,
 		mutualHistory: PropTypes.object,
+		f10kHistoryA: PropTypes.object,
+		f10kHistoryB: PropTypes.object,
 		isLoadingHistoryA: PropTypes.bool.isRequired,
 		isLoadingHistoryB: PropTypes.bool.isRequired,
 		isLoadingMutualHistory: PropTypes.bool.isRequired,
@@ -32,6 +37,8 @@ class MatchDetail extends Component {
 			matchHistoryA,
 			matchHistoryB,
 			mutualHistory,
+			f10kHistoryA,
+			f10kHistoryB,
 			isLoadingHistoryA,
 			isLoadingHistoryB,
 			isLoadingMutualHistory,
@@ -162,7 +169,56 @@ class MatchDetail extends Component {
 								}
 							</div>
 						</div>
-
+						<div className="ScoreGroup">
+							<div className="Score col-sm-6">
+								{
+								(f10kHistoryA && Array.isArray(f10kHistoryA.matches))
+								?
+								<div className="F10kInfo">
+									<Card initiallyExpanded>
+										<CardHeader title="Statistics" actAsExpander style={{ backgroundColor: grey600 }} titleColor={grey50} showExpandableButton={true}/>
+										<CardText expandable={true}>
+											<ul>
+												<li>Average kill: {f10kHistoryA.avgkill}</li>
+												<li>Average death: {f10kHistoryA.avgdeath}</li>
+												<li>Total kill: {f10kHistoryA.totalkill}</li>
+												<li>Total death: {f10kHistoryA.totaldeath}</li>
+												<li>Winrate: {f10kHistoryA.winrate}</li>
+												<li>Average odds: {f10kHistoryA.avgodds}</li>
+											</ul>
+										</CardText>
+									</Card>
+									<F10KHistory teamName={match.teama.toLowerCase()} f10kHistory={f10kHistoryA.matches} />
+								</div>
+								:
+								""
+								}
+							</div>
+							<div className="Score col-sm-6">
+								{
+								(f10kHistoryB && Array.isArray(f10kHistoryB.matches))
+								?
+								<div className="F10kInfo">
+									<Card initiallyExpanded>
+										<CardHeader title="Statistics" actAsExpander style={{ backgroundColor: grey600 }} titleColor={grey50} showExpandableButton={true}/>
+										<CardText expandable={true}>
+											<ul>
+												<li>Average kill: {f10kHistoryB.avgkill}</li>
+												<li>Average death: {f10kHistoryB.avgdeath}</li>
+												<li>Total kill: {f10kHistoryB.totalkill}</li>
+												<li>Total death: {f10kHistoryB.totaldeath}</li>
+												<li>Winrate: {f10kHistoryB.winrate}</li>
+												<li>Average odds: {f10kHistoryB.avgodds}</li>
+											</ul>
+										</CardText>
+									</Card>
+									<F10KHistory teamName={match.teamb.toLowerCase()} f10kHistory={f10kHistoryB.matches} />
+								</div>
+								:
+								""
+								}
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -175,9 +231,13 @@ const mapStateToProps = state => {
 		match: state.match.matchDetail,
 		mutualHistory: state.match.mutualHistory,
 		matchHistoryA: state.match.teamMatchHistoryA,
+		f10kHistoryA: state.match.f10kHistoryA,
+		f10kHistoryB: state.match.f10kHistoryB,
 		matchHistoryB: state.match.teamMatchHistoryB,
 		isLoadingHistoryA: state.match.isLoadingHistoryA,
 		isLoadingHistoryB: state.match.isLoadingHistoryB,
+		isLoadingF10kA: state.match.isLoadingF10kA,
+		isLoadingF10kB: state.match.isLoadingF10kB,
 		isLoadingMutualHistory: state.match.isLoadingMutualHistory,
 	}
 };

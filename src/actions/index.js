@@ -102,17 +102,18 @@ export const requestTeam = (id) => ({
 	teamId: id
 });
 
-export const receiveTeam = (json) => ({
+export const receiveTeam = (json, side) => ({
 	type: RECEIVE_TEAM,
 	teamDetail: json,
-	receivedAt: Date.now()
+	receivedAt: Date.now(),
+	teamSide: side
 });
 
-export const fetchTeam = id => dispatch => {
+export const fetchTeam = (id, side) => dispatch => {
 	dispatch(requestTeam(id));
 	return fetch(`${config.STATS_API}/team/${id}/f10k`)
 		.then(response => response.json())
-		.then(json => dispatch(receiveTeam(json)))
+		.then(json => dispatch(receiveTeam(json, side)))
 };
 
 // Actions for team info
@@ -162,5 +163,9 @@ export const fetchMatch = id => dispatch => {
 			dispatch(fetchMutualHistory(json.matchDetail.teama, json.matchDetail.teamb));
 			dispatch(fetchHistoryMatch(json.matchDetail.teama, 'teama', json.matchDetail.game));
 			dispatch(fetchHistoryMatch(json.matchDetail.teamb, 'teamb', json.matchDetail.game));
+			if (json.matchDetail.game === "dota") {
+				dispatch(fetchTeam(json.matchDetail.teama, 'teama'));
+				dispatch(fetchTeam(json.matchDetail.teamb, 'teamb'));
+			}
 		})
 };
