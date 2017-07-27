@@ -87,7 +87,7 @@ class MatchDetail extends Component {
 							</div>
 							<div className="col-md-4 text-center">
 								<div className="Match-score">
-									{ match.status === "Settled" ? match.scorea + ' - ' + match.scoreb : '0 - 0' }
+									{ match.status === "Settled" ? match.scorea + ' - ' + match.scoreb : ' - ' }
 								</div>
 							</div>
 							<div className="col-md-4">

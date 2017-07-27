@@ -50,7 +50,7 @@ class TeamDetail extends Component {
 								<CardHeader title={this.props.params.name} subtitle={teamInfo.game} avatar={teamInfo.logo}/>
 								<CardText>
 									{
-									(teamDetail && Array.isArray(teamDetail.matches)) || teamInfo.game === 'dota'
+									(teamDetail && Array.isArray(teamDetail.matches) && teamInfo.game === 'dota')
 									?
 									<div className="F10kInfo">
 										<Card initiallyExpanded>

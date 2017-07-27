@@ -37,7 +37,6 @@ class ResultList extends Component {
 			<Card
 				style={{
 				marginTop: '10px',
-				maxWidth: '500px',
 				margin: '0 auto',
 				}}
 			>
