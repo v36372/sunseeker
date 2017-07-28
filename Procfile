@@ -1,1 +1,1 @@
-web: npm install && npm run build && ./node_modules/serve/bin/serve.js -s build  
+web: npm run build && ./node_modules/serve/bin/serve.js -s build  
