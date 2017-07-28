@@ -62,7 +62,7 @@ class Donate extends Component {
 						Please do come back again if you find the site helpful, share the site to your friends if you started winning bets, provide feedbacks so we can make it better.
 					</p>
 					<p>
-						We also accepting donation in the form of items/ rolls. You can leave the roll information/ feedback for functions that you would LOVE to have in the below textbox in the below textbox.
+						We also accepting donation in the form of items/ rolls. You can leave the roll information/ feedback for functions that you would LOVE to have in the below textbox.
 					</p>
 					<p>
 						Thanks and good luck!
