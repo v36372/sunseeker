@@ -93,7 +93,7 @@ class Donate extends Component {
 
 					<form onSubmit={this.handleSubmit}>
 						Our steamtrade link:
-						<label>ditmemay.com</label><br/>
+						<a href="https://steamcommunity.com/tradeoffer/new/?partner=104124469">https://steamcommunity.com/tradeoffer/new/?partner=104124469</a><br/>
 						Your name: <input type="text" name="name" onChange={this.handleChange} value={name}></input><br/>
 						Feedback or donation goes here: <br/>
 						<textarea rows="4" cols="50" name="feedback" onChange={this.handleChange} value={feedback}></textarea><br/>
