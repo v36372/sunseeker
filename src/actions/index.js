@@ -169,3 +169,19 @@ export const fetchMatch = id => dispatch => {
 			}
 		})
 };
+
+// Action to post feedback
+
+export const postFeedback = (name, feedback) => {
+	return fetch(`${config.STATS_API}/feedback`, {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type':'application/json'
+		},
+		body: JSON.stringify({
+			name: name,
+			feedback: feedback
+		})
+	})
+};

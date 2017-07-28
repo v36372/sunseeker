@@ -1,67 +1,67 @@
 .TableRow {
-  margin-bottom: 10px;
-  overflow: hidden;
+	margin-bottom: 10px;
+	overflow: hidden;
 }
 
 .TableRow-head {
-  padding: 0 15px;
-  background: $light-gray;
+	padding: 0 15px;
+	background: $light-gray;
 }
 
 .TableRow-footer {
-  padding: 5px 15px;
+	padding: 5px 15px;
 }
 
 .TableRow-body {
-  padding-top: 15px;
+	padding-top: 15px;
 }
 
 .TableRow-background {
-  display: none;
+	display: none;
 }
 
 .TableRow-body-name {
-  display: inline-block;
-  vertical-align: middle;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .TableRow-body-image {
-  display: inline-block;
-  position: relative;
-  img {
-    height: 55px;
-    width: 91px;
-  }
+	display: inline-block;
+	position: relative;
+	img {
+		height: 55px;
+		width: 91px;
+	}
 
-  img.winner-tick {
-    position: absolute;
-    right: -50px;
-    top: 0;
-    height: 50px;
-    width: 50px;
-  }
+	img.winner-tick {
+		position: absolute;
+		right: -50px;
+		top: 0;
+		height: 50px;
+		width: 50px;
+	}
 
-  img.winner-tick--right {
-    left: -50px;
-  }
+	img.winner-tick--right {
+		left: -50px;
+	}
 }
 
 @media screen and (min-width: 769px) {
-  .TableRow {
-    height: 120px;
-  }
+	.TableRow {
+		height: 120px;
+	}
 }
 
 @media screen and (min-width: 1121px) {
-  .TableRow-background {
-    display: block;
-    position: absolute;
-    top: 20px;
-    right: 0;
-    img {
-      height: 100px;
-      width: 100%;
-      max-width: 220px;
-    }
-  }
+	.TableRow-background {
+		display: block;
+		position: absolute;
+		top: 20px;
+		right: 0;
+		img {
+			height: 100px;
+			width: 100%;
+			max-width: 220px;
+		}
+	}
 }

@@ -7,6 +7,7 @@ import {Card, CardHeader, CardText} from 'material-ui/Card'
 import {grey600, grey50} from 'material-ui/styles/colors'
 import F10KHistory from '../components/F10KHistory'
 import NavigationBar from '../components/NavigationBar'
+import Footer from '../components/Footer'
 import ResultList from '../components/ResultList'
 import { fetchMatch } from '../actions'
 import Tick from '../components/images/Tick.png'
@@ -221,6 +222,7 @@ class MatchDetail extends Component {
 						</div>
 					</div>
 				</div>
+				<Footer />
 			</div>
 			)
 }

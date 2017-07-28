@@ -25,6 +25,7 @@ class NavigationBar extends Component {
 				<ul className="NavigationBar-menu">
 					<li className="menu-item"><Link to="/dota" activeClassName="menuItem--active">DOTA</Link></li>
 					<li className="menu-item"><Link to="/csgo" activeClassName="menuItem--active">CSGO</Link></li>
+					<li className="menu-item"><Link to="/donate" activeClassName="menuItem--active">Donate</Link></li>
 				</ul>
 			</div>
 			)

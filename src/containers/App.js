@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import MatchesFilter from './MatchesFilter'
 import NavigationBar from '../components/NavigationBar'
+import Footer from '../components/Footer'
 import ListMatch from '../components/ListMatch'
 import { fetchMatches } from '../actions'
 import dayBefore from '../helper/date'
@@ -34,6 +35,7 @@ class App extends Component {
 					</div>
 					<ListMatch listMatches={ listMatches } />
 				</div>
+				<Footer />
 			</div>
 			);
 	}

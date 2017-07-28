@@ -8,6 +8,7 @@ import F10KHistory from '../components/F10KHistory'
 import TeamTwitter from '../components/TeamTwitter'
 import ResultList from '../components/ResultList'
 import NavigationBar from '../components/NavigationBar'
+import Footer from '../components/Footer'
 import slugify from '../helper/slugify'
 
 class TeamDetail extends Component {
@@ -85,6 +86,7 @@ class TeamDetail extends Component {
 						</div>
 					</div>
 				</div>
+				<Footer />
 			</div>
 			)
 }
