@@ -11,7 +11,7 @@ class Footer extends Component {
 						<a href="https://f10k.herokuapp.com">About</a>
 					</div>
 					<div className="Footer-item col-md-1">
-						<a href="https://f10k.herokuapp.com">Donate</a>
+						<a href="https://f10k.herokuapp.com/donate">Donate</a>
 					</div>
 					<div className="Footer-item col-md-8">
 						<a href="https://f10k.herokuapp.com">
