@@ -22,9 +22,15 @@ class F10KHistory extends Component {
 		}
 	};
 
+	winOrLose = (match, teamName) => {
+		if (match.scorea > match.scoreb) {
+			return match.teama.toLowerCase() === teamName || match.teama_short.toLowerCase() === teamName
+		}
+		return match.teamb.toLowerCase() === teamName || match.teamb_short.toLowerCase() === teamName
+	}
+
 	render () {
-		const { f10kHistory } = this.props;
-		const { teamName } = this.props;
+		const { f10kHistory, teamName  } = this.props;
 
 		return (
 			<Card style={{ 'marginTop': '10px'}}>
@@ -38,10 +44,10 @@ class F10KHistory extends Component {
 							<ListItem
 								primaryText={match.matchname}
 								leftAvatar={
-								<Avatar color={ match.winner.toLowerCase() === teamName ? lightGreenA700:red700}
+								<Avatar color={ this.winOrLose(match, teamName) ? lightGreenA700:red700}
 									backgroundColor={transparent}
 									style={{left: 8}}>
-									{match.winner.toLowerCase() === teamName? "W":"L"}
+									{ this.winOrLose(match, teamName) ? "W":"L"}
 								</Avatar>
 								}
 								rightAvatar={

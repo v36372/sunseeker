@@ -34,12 +34,17 @@ class TeamDetail extends Component {
 	};
 
 	render () {
-		const { teamDetail, teamHistory, teamInfo } = this.props;
+		const { teamDetail, teamHistory, teamInfo, location } = this.props;
 		let teamSlug =  "";
 		if (teamInfo && teamInfo.slug) {
 			teamSlug =  teamInfo.game + "-" + teamInfo.slug;
 		}
-		const teamName = this.props.params.name.toLowerCase();
+		var teamName = this.props.params.name.toLowerCase();
+		if (teamInfo.message === "not found" && teamDetail && teamDetail.name !== "") {
+			this.props.dispatch(fetchTeamInfo(slugify(teamDetail.name), location.query.game))
+			teamName = teamDetail.name.toLowerCase()
+		}
+
 
 		return (
 			<div className="TeamDetail">
@@ -60,6 +65,7 @@ class TeamDetail extends Component {
 												<ul>
 													<li>Average kill: {teamDetail.avgkill}</li>
 													<li>Average death: {teamDetail.avgdeath}</li>
+													<li>Ratio kill: {teamDetail.ratiokill}</li>
 													<li>Total kill: {teamDetail.totalkill}</li>
 													<li>Total death: {teamDetail.totaldeath}</li>
 													<li>Winrate: {teamDetail.winrate}</li>
