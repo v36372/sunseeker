@@ -185,3 +185,77 @@ export const postFeedback = (name, feedback) => {
 		})
 	})
 };
+
+// Action to admin login
+export const RECEIVE_LOGIN = 'RECEIVE_LOGIN';
+
+export const receiveLogin = (json) => ({
+	type: RECEIVE_LOGIN,
+	loginResult: json,
+	receivedAt: Date.now()
+});
+
+export const adminLogin = (email, password) => dispatch => {
+	return fetch(`${config.STATS_API}/login`, {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type':'application/json'
+		},
+		body: JSON.stringify({
+			email: email,
+			password: password
+		})
+	})
+	.then(response => response.json())
+	.then(json => dispatch(receiveLogin(json)))
+};
+
+// Action to admin register
+export const RECEIVE_REGISTER = 'RECEIVE_REGISTER';
+
+export const receiveRegister = (json) => ({
+	type: RECEIVE_REGISTER,
+	registerResult: json,
+	receivedAt: Date.now()
+});
+
+export const adminRegister = (name, email, password, key) => dispatch => {
+	return fetch(`${config.STATS_API}/register`, {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type':'application/json'
+		},
+		body: JSON.stringify({
+			name: name,
+			email: email,
+			password: password,
+			register_key: key
+		})
+	})
+	.then(response => response.json())
+	.then(json => dispatch(receiveRegister(json)))
+};
+
+// Action to fetch feedback
+export const RECEIVE_FEEDBACK = 'RECEIVE_FEEDBACK';
+
+export const receiveFeedback = (json) => ({
+	type: RECEIVE_FEEDBACK,
+	feedBackArr: json,
+	receivedAt: Date.now()
+});
+
+export const fetchFeedback = () => dispatch => {
+	console.log("vo feedback roi nbe")
+	return fetch(`${config.STATS_API}/feedback`, {
+		method: 'GET',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type':'application/json'
+		}
+	})
+	.then(response => response.json())
+	.then(json => dispatch(receiveFeedback(json)))
+};

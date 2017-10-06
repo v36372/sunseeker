@@ -12,6 +12,7 @@ class ListMatch extends Component {
 		const { listMatches } = this.props;
 		return listMatches.map((i) => <GroupMatch groupMatch={i} key={i.series_id}/>);
 	}
+
 	render () {
 		const groupMatch = this.renderTableRows();
 		return (
