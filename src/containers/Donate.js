@@ -67,33 +67,13 @@ class Donate extends Component {
 					<p>
 						Thanks and good luck!
 					</p>
-					<br/>
-					<p>
-					Xin chào các bạn, cám ơn vì đã ghé đây.
-					</p>
-					<p>
-					Trang web này lúc đầu mình để xài một mình à, thấy có vẻ chắc có người thích nên tụi mình làm phiên bản web cho nó như hiện giờ.
-					</p>
-					<p>
-					Hi vọng web này giúp các bạn bet f10k hay cung cấp thêm chút thông tin cho các bạn khi bet hơn một chút. Chắc chắn là bet thì hên xui à, chưa chắc bạn sẽ lời đâu nên đừng theo quá. Nhưng mà mình chỉ hi vọng web của mình sẽ giúp ích được cho bạn một chút cũng được 😊
-					</p>
-					<p>
-					Nhớ quay lại nếu bạn thấy web hay, chia sẻ tới các group nếu bạn win bet, feedback cho tụi mình để làm web này xịn hơn ha.
-					</p>
-					<p>
-					Ờ tụi mình cũng nhận donation qua steam offer này, có feedback hay roll gì thì điền vô ô dưới nha mình sẽ đọc hết 😊
-					</p>
-					<p>
-					Cám ơn các bạn 😀
-					</p>
-					<p>
 					F10Kill Team
 					</p>
 					<br/>
 
 					<form onSubmit={this.handleSubmit}>
 						Our steamtrade link:
-						<a href="https://steamcommunity.com/tradeoffer/new/?partner=104124469">https://steamcommunity.com/tradeoffer/new/?partner=104124469</a><br/>
+						<a href="https://steamcommunity.com/tradeoffer/new/?partner=104124469&token=jw5rh7lv">https://steamcommunity.com/tradeoffer/new/?partner=104124469&token=jw5rh7lv</a><br/>
 						Your name: <input type="text" name="name" onChange={this.handleChange} value={name}></input><br/>
 						Feedback or donation goes here: <br/>
 						<textarea rows="4" cols="50" name="feedback" onChange={this.handleChange} value={feedback}></textarea><br/>
