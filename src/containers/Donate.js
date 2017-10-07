@@ -67,6 +67,7 @@ class Donate extends Component {
 					<p>
 						Thanks and good luck!
 					</p>
+					<p>
 					F10Kill Team
 					</p>
 					<br/>
