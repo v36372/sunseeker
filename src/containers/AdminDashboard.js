@@ -10,17 +10,24 @@ class AdminDashboard extends Component {
 
 	static propTypes = {
 		dispatch: PropTypes.func.isRequired,
-		feedBackArr: PropTypes.array
+		feedBackArr: PropTypes.object
 	}
 
 	componentDidMount () {
 		this.props.dispatch(fetchFeedback());
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.feedBackArr.message !== undefined) {
+			alert("unauthorized, you need to login to see this")
+			this.context.router.push("/admin");
+		}
+	}
+
 	renderFeedbackRows() {
 		const { feedBackArr } = this.props;
-		if (feedBackArr) {
-			return feedBackArr.map((i) => <Feedback feedBack={i} key={i.time}/>);
+		if (feedBackArr && feedBackArr.data) {
+			return feedBackArr.data.map((i) => <Feedback feedBack={i} key={i.time}/>);
 		}
 
 		return ""
@@ -32,7 +39,7 @@ class AdminDashboard extends Component {
 		return (
 			<div>
 				<NavigationBar />
-				<div className="container" align="center">
+				<div className="container">
 					<div className="row">
 						<div className="col-md-4">
 							Name

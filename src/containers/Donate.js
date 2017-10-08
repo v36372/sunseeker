@@ -29,8 +29,6 @@ class Donate extends Component {
 	}
 
 	handleSubmit (event) {
-		console.log(this.state)
-
 		postFeedback(this.state.name, this.state.feedback)
 		this.setState({
 			name: "",

@@ -248,13 +248,13 @@ export const receiveFeedback = (json) => ({
 });
 
 export const fetchFeedback = () => dispatch => {
-	console.log("vo feedback roi nbe")
 	return fetch(`${config.STATS_API}/feedback`, {
+		credentials: 'include',
 		method: 'GET',
 		headers: {
 			'Accept': 'application/json',
-			'Content-Type':'application/json'
-		}
+			'Content-Type':'application/json',
+		},
 	})
 	.then(response => response.json())
 	.then(json => dispatch(receiveFeedback(json)))

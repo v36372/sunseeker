@@ -9,11 +9,11 @@ import {Link} from 'react-router';
 class Admin extends Component {
 
 	static propTypes = {
-		dispatch: PropTypes.func
+		dispatch: PropTypes.func,
+		loginResult: PropTypes.object
 	}
 
 	componentWillReceiveProps(nextProps) {
-		
 		if (nextProps.loginResult.email !== undefined) {
 			alert("login successfully! Redirecting to admin dashboard")
 			this.context.router.push("/admin/dashboard");
