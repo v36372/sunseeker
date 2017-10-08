@@ -197,6 +197,7 @@ export const receiveLogin = (json) => ({
 
 export const adminLogin = (email, password) => dispatch => {
 	return fetch(`${config.STATS_API}/login`, {
+		credentials: 'include',
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',
@@ -207,7 +208,10 @@ export const adminLogin = (email, password) => dispatch => {
 			password: password
 		})
 	})
-	.then(response => response.json())
+	.then(response => {
+		console.log(response)
+		return response.json()
+	})
 	.then(json => dispatch(receiveLogin(json)))
 };
 
@@ -222,6 +226,7 @@ export const receiveRegister = (json) => ({
 
 export const adminRegister = (name, email, password, key) => dispatch => {
 	return fetch(`${config.STATS_API}/register`, {
+		credentials: 'include',
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',
@@ -258,4 +263,7 @@ export const fetchFeedback = () => dispatch => {
 	})
 	.then(response => response.json())
 	.then(json => dispatch(receiveFeedback(json)))
+		.catch(function(error){
+			console.log(error)
+		})
 };
