@@ -124,7 +124,9 @@ class MatchDetail extends Component {
 									<thead>
 										<tr>
 											<th>Games</th>
+											<th>Match name</th>
 											<th>Winner</th>
+											<th>Time</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -135,6 +137,7 @@ class MatchDetail extends Component {
 											<td>{game.tournament}</td>
 											<td>{game.matchname}</td>
 											<td>{game.winner}</td>
+											<td><Moment fromNow>{game.time}</Moment></td>
 										</tr>
 										)
 										: isLoadingMutualHistory
